@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import SplashScreen from './Screens/SplashScreen';
+import SearchByName from './Screens/SearchByName';
 
 const Tab = createBottomTabNavigator();
 
@@ -10,8 +10,8 @@ export default function Routes() {
       <NavigationContainer>
          <Tab.Navigator>
             <Tab.Screen
-               name="SplashScreen"
-               component={SplashScreen}
+               name="SearchByName"
+               component={SearchByName}
             ></Tab.Screen>
          </Tab.Navigator>
       </NavigationContainer>
