@@ -2,11 +2,13 @@ import {
    View,
    Image,
    TextInput,
-   Button,
+   Text,
    ActivityIndicator,
+   TouchableHighlight,
 } from 'react-native';
 import { useState } from 'react';
 import axios from 'axios';
+import styles from './SearchByNameStyle';
 
 export default function SearchByName() {
    const [cardName, setCardName] = useState('');
@@ -14,7 +16,8 @@ export default function SearchByName() {
    const [uri, setUri] = useState(
       'https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg'
    );
-
+   
+   //Request configuration.
    var options = {
       method: 'GET',
       params: { collectible: '1' },
@@ -67,24 +70,28 @@ export default function SearchByName() {
    }
 
    return (
-      <View style={{ flex: 1, alignItems: 'center' }}>
+      <View style={ styles.container }>
          {loading ? (
-            <ActivityIndicator size={30} color="black" />
+            <View style={ styles.cardConteiner }>
+               <ActivityIndicator size={40} color="black" />
+            </View>
          ) : (
-            <Image
-               style={{ width: '90%', height: '80%' }}
-               source={{ uri: uri }}
-               resizeMode="contain"
-            />
+            <View style={ styles.cardConteiner }>
+               <Image
+                  style={{ width: '80%', height: '80%' }}
+                  source={{ uri: uri }}
+                  resizeMode="contain"
+               />
+            </View>
          )}
 
          <TextInput
-            style={{ borderWidth: 1, width: 300, marginBottom: 20 }}
+            style={ styles.input }
             onChangeText={(name) => setCardName(name.toUpperCase())}
          />
-         <View style={{ width: 150 }}>
-            <Button title="Search" color={'black'} onPress={handleSearch} />
-         </View>
+        <TouchableHighlight style={ styles.button } onPress={handleSearch}>
+            <Text style={ styles.buttonText }>Search</Text>
+        </TouchableHighlight>
       </View>
    );
 }
