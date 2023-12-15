@@ -5,14 +5,16 @@ import {
    Text,
    ActivityIndicator,
    TouchableHighlight,
+   TouchableOpacity,
 } from 'react-native';
 import { useState } from 'react';
 import axios from 'axios';
 import styles from './SearchByNameStyle';
 
-export default function SearchByName() {
+export default function SearchByName({navigation}) {
    const [cardName, setCardName] = useState('');
    const [loading, setLoading] = useState(false);
+   const [request, setRequest] = useState(false);
    const [uri, setUri] = useState(
       'https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg'
    );
@@ -34,6 +36,7 @@ export default function SearchByName() {
       setLoading(true);
 
       setUri('https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg');
+      setRequest(false);
 
       //Verify card name.
       if (cardName != '') {
@@ -52,7 +55,8 @@ export default function SearchByName() {
 
             //If card has a image, shows the first one.
             if(imagesUri.length > 0){
-               setUri(imagesUri[0])
+               setUri(imagesUri[0]);
+               setRequest(true);
             }
             else{
                alert('This card doesn\'t have a image available');
@@ -69,22 +73,32 @@ export default function SearchByName() {
       setLoading(false);
    }
 
+   const handleCardPress = () => {
+      if(request){
+         navigation.navigate('CardInformation', {cardName: cardName, opt: options});
+      }
+   }
+
    return (
       <View style={ styles.container }>
-         {loading ? (
-            <View style={ styles.cardConteiner }>
-               <ActivityIndicator size={40} color="black" />
-            </View>
-         ) : (
-            <View style={ styles.cardConteiner }>
-               <Image
-                  style={{ width: '80%', height: '80%' }}
-                  source={{ uri: uri }}
-                  resizeMode="contain"
-               />
-            </View>
-         )}
-
+         {
+            loading ? (
+               <View style={ styles.cardConteiner }>
+                  <ActivityIndicator size={40} color="black" />
+               </View>
+             ) : 
+             (
+               <TouchableOpacity 
+                  style={ styles.cardConteiner }
+                  onPress={ handleCardPress }>
+                  <Image
+                     style={{ width: '80%', height: '80%' }}
+                     source={{ uri: uri }}
+                     resizeMode="contain"
+                  />
+               </TouchableOpacity>
+            )
+         }
          <TextInput
             style={ styles.input }
             onChangeText={(name) => setCardName(name.toUpperCase())}
