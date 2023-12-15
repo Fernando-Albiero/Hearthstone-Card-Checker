@@ -24,7 +24,7 @@ export default function Welcome({navigation}) {
                This app uses the HearthStone {'\n'}API available on:{'\n'} 
                <Text 
                   style={ styles.link}
-                  onPress={()=>{Linking.openURL('https://hearthstoneapi.com/')}}
+                  onPress={ () => { Linking.openURL('https://hearthstoneapi.com/') }}
                >https://hearthstoneapi.com/</Text>
             </Text>
             
@@ -38,7 +38,7 @@ export default function Welcome({navigation}) {
                <TouchableHighlight 
                   underlayColor='#fff'
                   activeOpacity={0.5}
-                  onPress={ () => navigation.navigate('SearchByName') }>
+                  onPress={() => Linking.openURL('https://github.com/Fernando-Albiero/')}>
                   <Image 
                      source={ require('../assets/github.png')} 
                      style={ styles.socialMediaImage}>
@@ -47,7 +47,7 @@ export default function Welcome({navigation}) {
                <TouchableHighlight 
                   underlayColor='#fff'
                   activeOpacity={0.5}
-                  onPress={ () => navigation.navigate('SearchByName') }>
+                  onPress={() => Linking.openURL('https://www.linkedin.com/in/fernando-albiero-8402302a4/')}>
                   <Image 
                      source={ require('../assets/linkedin.png')} 
                      style={ styles.socialMediaImage}>
