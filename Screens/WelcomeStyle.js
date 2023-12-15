@@ -8,20 +8,26 @@ const styles = StyleSheet.create({
    },
    welcome:{
       fontSize: 20,
-      marginTop: 50
+      marginTop: 50,
+      fontFamily: 'IBMPlexMono'
    },
    title:{
       fontSize: 32,
-      fontWeight: 'bold',
       letterSpacing: -2,
       marginTop: 20,
-      marginBottom: 20
+      marginBottom: 20,
+      fontFamily: 'Uncial-Caps'
    },
    text:{
-      fontSize: 18,
+      fontSize: 16,
       textAlign: 'center',
       marginLeft: 25,
-      marginRight: 25
+      marginRight: 25,
+      fontFamily: 'IBMPlexMono'
+   },
+   link:{
+      color: 'blue',
+      textDecorationLine: 'underline' 
    },
    button:{
       justifyContent: 'center',
@@ -42,6 +48,7 @@ const styles = StyleSheet.create({
    credits:{
       fontSize: 12,
       textAlign: 'center',
+      fontFamily: 'IBMPlexMono'
    },
    socialMediaConteiner:{
       flexDirection: 'row',
