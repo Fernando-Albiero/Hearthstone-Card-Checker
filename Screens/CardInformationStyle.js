@@ -49,7 +49,9 @@ const styles = StyleSheet.create({
    imageConteiner:{
       width: '100%',
       height: '50%',
-      alignItems: 'center'
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'pink'
    }
 })
 
