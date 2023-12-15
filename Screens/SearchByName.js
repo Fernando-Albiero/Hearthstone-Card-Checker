@@ -13,6 +13,7 @@ import styles from './SearchByNameStyle';
 
 export default function SearchByName({navigation}) {
    const [cardName, setCardName] = useState('');
+   const [data, setData] = useState({});
    const [loading, setLoading] = useState(false);
    const [request, setRequest] = useState(false);
    const [uri, setUri] = useState(
@@ -45,6 +46,7 @@ export default function SearchByName({navigation}) {
             const response = await axios.request(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/${cardName}`, options);
             const data = response.data;
             var imagesUri = [];
+            setData(data);
 
             //Extract all images found.
             for(let i=0; i<data.length; i++){
@@ -75,7 +77,7 @@ export default function SearchByName({navigation}) {
 
    const handleCardPress = () => {
       if(request){
-         navigation.navigate('CardInformation', {cardName: cardName, opt: options});
+         navigation.navigate('CardInformation', {data: data});
       }
    }
 

@@ -1,4 +1,4 @@
-import { TouchableHighlight, View, Text, Image, Linking } from "react-native";
+import { TouchableHighlight, View, Text, Image, Linking, StatusBar } from "react-native";
 import { useFonts } from 'expo-font';
 import styles from "./WelcomeStyle";
 
@@ -14,6 +14,7 @@ export default function Welcome({navigation}) {
    if(isLoaded){
       return (
          <View style={ styles.container }>
+            <StatusBar style='light' backgroundColor='black' />
             <Text style={ styles.welcome }>Welcome to</Text>
             <Text style={ styles.title }>Hearth Stone{'\n'}Card Checker</Text>
             <Text style={ styles.text }>

@@ -1,11 +1,22 @@
 import { useEffect, useState } from 'react';
 import { View, Text, Image, ActivityIndicator } from 'react-native'
+import { useFonts } from 'expo-font';
 import axios from 'axios';
+import styles from './CardInformationStyle';
+
+let customFonts = {
+   'BelweBoldBT': require('../assets/fonts/BelweBoldBT.ttf'),
+   'Inter' : require('../assets/fonts/Inter-Regular.ttf'),
+   'Inter-Bold' : require('../assets/fonts/Inter-Bold.ttf')
+ };
 
 export default function CardInformation({navigation, route}) {
-   const {cardName, opt} = route.params;
+   const {data} = route.params;
+
+   const [isLoaded] = useFonts(customFonts);
 
    const [loading, setLoading] = useState(false);
+   const [name, setName] = useState('');
    const [flavor, setFlavor] = useState('');
    const [text, setText] = useState('');
    const [type, setType] = useState('');
@@ -17,14 +28,11 @@ export default function CardInformation({navigation, route}) {
 
    useEffect(() => {
       fetchData();
-   }, [cardName]);
+   }, [route.params]);
 
-   async function fetchData(){
+   function fetchData(){
       setLoading(true);
-
-      try{
-         const response = await axios.request(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/${cardName}`, opt);
-         const data = response.data;
+         setName(data[0].name);
          setFlavor(data[0].flavor);
          setText(data[0].text);
          setType(data[0].type);
@@ -36,40 +44,50 @@ export default function CardInformation({navigation, route}) {
          if(data[0].hasOwnProperty('img')){
             setUri(data[0].img);
          }
-      }
-      catch(error){
-         alert(error);
-      }
-
+      
       setLoading(false);
    }
 
-  return (
-    <View>
-      {
-         loading ? (
-            <View>
-               <ActivityIndicator size={25} color='black'/>
-            </View>
-         ) :
-         (
-            <View>
-               <Text>{cardName}</Text>
-               <Text>{flavor}</Text>
-               <Text>{text}</Text>
-               <Text>Type: {type}</Text>
-               <Text>Rarity: {rarity}</Text>
-               <Text>Set: {cardSet}</Text>
-               <Text>Class: {cardClass}</Text>
-               <Text>Artist: {artist}</Text>
-               <Image
-                  style={{ width: '30%', height: '30%' }}
-                  source={{ uri: uri }}
-                  resizeMode="contain"
-               />
-            </View>
-         )
-      }
-    </View>
-  )
+   if(isLoaded){
+      return (
+         <View style={ styles.container }>
+           {
+              loading ? (
+                 <View style={ styles.loading }>
+                    <ActivityIndicator size={25} color='black'/>
+                 </View>
+              ) :
+              (
+                 <View style={ styles.inner }>
+                     <Text style={ styles.cardName }>{name}</Text>
+                     <Text style={ styles.cardFlavor }>{flavor}</Text>
+                     <Text style={ styles.cardText }>{text}</Text>
+                     <Text style={ styles.titles }>Type:{" "}
+                        <Text style={ styles.information }>{type}</Text>
+                     </Text>
+                     <Text style={ styles.titles }>Rarity:{" "}
+                        <Text style={ styles.information }>{rarity}</Text>
+                     </Text>
+                     <Text style={ styles.titles }>Set:{" "}
+                        <Text style={ styles.information }>{cardSet}</Text>
+                     </Text>
+                     <Text style={ styles.titles }>Class:{" "} 
+                        <Text style={ styles.information }>{cardClass}</Text>
+                     </Text>
+                     <Text style={ styles.titles }>Artist:{" "}
+                        <Text style={ styles.information }>{artist}</Text>
+                     </Text>
+                     <View style={ styles.imageConteiner}>
+                        <Image
+                           style={{ width: '90%', height: '90%' }}
+                           source={{ uri: uri }}
+                           resizeMode="contain"
+                        />
+                     </View>
+                 </View>
+              )
+           }
+         </View>
+      )  
+   }
 }
