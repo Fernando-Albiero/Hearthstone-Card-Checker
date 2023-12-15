@@ -33,6 +33,8 @@ export default function SearchByName() {
       //Starts loading.
       setLoading(true);
 
+      setUri('https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg');
+
       //Verify card name.
       if (cardName != '') {
          try {
@@ -54,16 +56,14 @@ export default function SearchByName() {
             }
             else{
                alert('This card doesn\'t have a image available');
-               setUri('https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg')
             }
          }
          catch(error){
             alert('Card not find!\nDid u type the card name correctly?');
-            setUri('https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg')
          }
       } 
       else{
-         alert('Please, type a card name!')
+         alert('Please, type a card name!');
       }
 
       setLoading(false);
@@ -88,6 +88,7 @@ export default function SearchByName() {
          <TextInput
             style={ styles.input }
             onChangeText={(name) => setCardName(name.toUpperCase())}
+            placeholder='Type a card name'
          />
         <TouchableHighlight style={ styles.button } onPress={handleSearch}>
             <Text style={ styles.buttonText }>Search</Text>

@@ -1,38 +1,51 @@
 import React from 'react';
 import { Image } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Welcome from './Screens/Welcome';
 import SearchByName from './Screens/SearchByName';
 
-
+const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
+function BottomNavigator(){
+   return (
+      <Tab.Navigator>
+         <Tab.Screen 
+            options={{
+               headerShown: false,
+               tabBarIcon: () => 
+                  <Image 
+                     source={require('./assets/cardBack.png')} 
+                     style={{width: 22, height: 33, resizeMode:'center'}}
+                  />
+               }}
+               name="SearchByName"
+               component={SearchByName}
+         />
+      </Tab.Navigator>
+   );
+}
 
 export default function Routes() {
    return (
       <NavigationContainer>
-         <Tab.Navigator>
-            <Tab.Screen
+         <Stack.Navigator>
+            <Stack.Screen
                options={{
                   headerShown: false
                }}
-               name="Welcome"
+               name='Welcome' 
                component={Welcome}
             />
-            <Tab.Screen 
+            <Stack.Screen
                options={{
-                  headerShown: false,
-                  tabBarIcon: () => 
-                     <Image 
-                        source={require('./assets/cardBack.png')} 
-                        style={{width: 22, height: 33, resizeMode:'center'}}
-                     />
-                  
+                  headerShown: false
                }}
-               name="SearchByName"
-               component={SearchByName}
-            />
-         </Tab.Navigator>
+               name='BottomNavigator' 
+               component={BottomNavigator}/>
+         </Stack.Navigator>
       </NavigationContainer>
    );
 }
