@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { SelectList } from 'react-native-dropdown-select-list';
 import { useFonts } from 'expo-font';
 import axios from 'axios';
-import styles from './SearchByDeckStyle';
+import styles from '../Styles/SearchByDeckStyle';
 
 let customFonts = {
    'IBMPlexMono' : require('../assets/fonts/IBMPlexMono-Regular.ttf'),

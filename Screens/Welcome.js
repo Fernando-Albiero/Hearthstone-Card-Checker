@@ -1,6 +1,6 @@
 import { TouchableHighlight, View, Text, Image, Linking, StatusBar } from "react-native";
 import { useFonts } from 'expo-font';
-import styles from "./WelcomeStyle";
+import styles from '../Styles/WelcomeStyle';
 
 let customFonts = {
    'Uncial-Caps': require('../assets/fonts/LHF-Uncial-Caps-Regular.ttf'),

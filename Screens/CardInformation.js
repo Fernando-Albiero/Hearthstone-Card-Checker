@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { View, Text, Image, ActivityIndicator, ImageBackground } from 'react-native';
 import { useFonts } from 'expo-font';
-import styles from './CardInformationStyle';
+import styles from '../Styles/CardInformationStyle';
 
 let customFonts = {
    'BelweBoldBT': require('../assets/fonts/BelweBoldBT.ttf'),
