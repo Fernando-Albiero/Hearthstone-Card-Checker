@@ -46,7 +46,7 @@ function BottomNavigator(){
                unmountOnBlur: true,
                tabBarIcon: () => 
                   <Image 
-                     source={require('./assets/deck.png')} 
+                     source={require('./assets/selected-hexagon.png')} 
                      style={{width: 34, height: 33, resizeMode:'contain'}}
                   />
                }}
