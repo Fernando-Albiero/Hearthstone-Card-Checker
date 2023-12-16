@@ -29,6 +29,7 @@ function BottomNavigator(){
          <Tab.Screen 
             options={{
                headerShown: false,
+               unmountOnBlur: true,
                tabBarIcon: () => 
                   <Image 
                      source={require('./assets/cardBack.png')} 

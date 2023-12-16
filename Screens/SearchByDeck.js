@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, TouchableOpacity, Image, FlatList, Button } from 'react-native';
+import { View, Text, TouchableOpacity, Image, FlatList, ActivityIndicator } from 'react-native';
 import { useState } from 'react';
 import { SelectList } from 'react-native-dropdown-select-list';
 import { useFonts } from 'expo-font';
@@ -12,6 +12,7 @@ let customFonts = {
 
 export default function SearchByDeck() {
    const [cardsUri, setCardsUri] = useState([]);
+   const [loading, setLoading] = useState(false);
    const [isLoaded] = useFonts(customFonts);
   
    const data = [
@@ -39,6 +40,8 @@ export default function SearchByDeck() {
 
    //Function to handle with searches.
    async function handleSearch(deckName){
+      setLoading(true);
+
       try {
          //Do the request to hearthstone API.
          const response = await axios.request(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/sets/${deckName}`, options);
@@ -57,16 +60,18 @@ export default function SearchByDeck() {
       }
       catch(error){
          alert(error);
-      } 
+      }
+
+      setLoading(false);
    }
 
-   const handlerCards = (item) => {
+   const handleCards = (item) => {
       return (
          <TouchableOpacity 
             style={ styles.cardConteiner }
             onPress={ () => {} }>
             <Image
-               style={{ width: 200, height: 200 }}
+               style={ styles.image }
                source={{ uri: item }}
                resizeMode="contain"
             />
@@ -77,18 +82,26 @@ export default function SearchByDeck() {
   return (
     <View style={ styles.container }>
       <Text style={ styles.deckName }>Deck Name</Text>
-      <SelectList 
-         style={ styles.dropdownMenu }
+      <SelectList
+         dropdownStyles={ styles.dropdownMenu }
+         placeholder='Select a deck'
+         searchPlaceholder='Search'
          setSelected={(deckName) => handleSearch(deckName)} 
          data={data} 
          save="value"
-     />
-
-      <FlatList
-         style={ styles.list }
-         data={cardsUri}
-         renderItem={({item}) => handlerCards(item)}
       />
+      {
+         loading ? 
+            <View style={ styles.loading }>
+               <ActivityIndicator size={40} color='black'></ActivityIndicator>
+            </View>
+         :
+            <FlatList
+               style={ styles.list }
+               data={cardsUri}
+               renderItem={({item}) => handleCards(item)}
+            />
+      }
     </View>
   )
 }

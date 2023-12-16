@@ -3,31 +3,43 @@ import { StyleSheet } from 'react-native'
 const styles = StyleSheet.create({
    container:{
       flex: 1,
-      alignItems: 'center',
-      backgroundColor: 'pink',
       paddingLeft: 20,
       paddingRight: 20,
-      paddingTop: 30
+      paddingTop: 30,
    },
    deckName:{
-      alignSelf: 'flex-start',
       fontSize: 18,
       fontFamily: 'IBMPlexMono',
       fontWeight: 'bold',
       marginBottom: 10
    },
    dropdownMenu:{
-      alignSelf: 'flex-start'
+      backgroundColor: "white",
+      position: "absolute",
+      top: 40,
+      width: "100%",
+      zIndex: 999,
    },
    list:{
-      alignSelf: 'flex-start',
-      marginTop: 10,
+      marginTop: 20,
       marginBottom: 10,
-      backgroundColor: 'yellow',
-      width: '70%'
+      width: '100%'
    },
    cardConteiner:{
-      backgroundColor: 'green'
+      alignItems: 'center',
+      marginBottom: 20
+   },
+   image:{
+      width: 300,
+      height: 300,
+      resizeMode: 'contain'
+   },
+   loading:{
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%',
+      height: '80%',
+      marginTop: 10,
    }
 });
 
