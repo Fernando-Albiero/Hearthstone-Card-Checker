@@ -21,13 +21,13 @@ const styles = StyleSheet.create({
       zIndex: 999,
    },
    list:{
-      marginTop: 20,
+      marginTop: 10,
       marginBottom: 10,
       width: '100%'
    },
    cardConteiner:{
       alignItems: 'center',
-      marginBottom: 20
+      marginBottom: 10
    },
    image:{
       width: 300,

@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { useState } from 'react';
 import axios from 'axios';
-import styles from './SearchByNameStyle';
+import styles from '../Styles/SearchByNameStyle';
 
 export default function SearchByName({navigation}) {
    const [cardName, setCardName] = useState('');

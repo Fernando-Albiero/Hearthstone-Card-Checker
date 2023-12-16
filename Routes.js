@@ -7,6 +7,7 @@ import Welcome from './Screens/Welcome';
 import SearchByName from './Screens/SearchByName';
 import CardInformation from './Screens/CardInformation';
 import SearchByDeck from './Screens/SearchByDeck';
+import SearchByMana from './Screens/SearchByMana';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -38,6 +39,19 @@ function BottomNavigator(){
                }}
                name="SearchByDeck"
                component={SearchByDeck}
+         />
+         <Tab.Screen 
+            options={{
+               headerShown: false,
+               unmountOnBlur: true,
+               tabBarIcon: () => 
+                  <Image 
+                     source={require('./assets/selected-hexagon.png')} 
+                     style={{width: 34, height: 33, resizeMode:'contain'}}
+                  />
+               }}
+               name="SearchByMana"
+               component={SearchByMana}
          />
          <Tab.Screen
             options={{
