@@ -30,7 +30,7 @@ function BottomNavigator(){
          <Tab.Screen 
             options={{
                headerShown: false,
-               unmountOnBlur: true,
+               //unmountOnBlur: true,
                tabBarIcon: () => 
                   <Image 
                      source={require('./assets/deck.png')} 

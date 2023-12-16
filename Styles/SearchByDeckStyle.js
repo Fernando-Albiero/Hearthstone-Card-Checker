@@ -9,8 +9,7 @@ const styles = StyleSheet.create({
    },
    deckName:{
       fontSize: 18,
-      fontFamily: 'IBMPlexMono',
-      fontWeight: 'bold',
+      fontFamily: 'IBMPlexMono-Bold',
       marginBottom: 10
    },
    dropdownMenu:{

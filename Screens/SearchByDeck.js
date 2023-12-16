@@ -1,52 +1,31 @@
-import { View, Text, TouchableOpacity, Image, FlatList, ActivityIndicator } from 'react-native';
-import { useState } from 'react';
+import { ActivityIndicator, FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
 import { SelectList } from 'react-native-dropdown-select-list';
+import { useState } from 'react';
 import { useFonts } from 'expo-font';
 import axios from 'axios';
 import styles from '../Styles/SearchByDeckStyle';
+import { options } from '../RequestOptionsAndDecks';
+import { decks } from '../RequestOptionsAndDecks';
 
 let customFonts = {
    'IBMPlexMono' : require('../assets/fonts/IBMPlexMono-Regular.ttf'),
    'IBMPlexMono-Bold' : require('../assets/fonts/IBMPlexMono-Bold.ttf')
- };
+};
 
 export default function SearchByDeck() {
    const [cardsUri, setCardsUri] = useState([]);
    const [loading, setLoading] = useState(false);
    const [isLoaded] = useFonts(customFonts);
-  
-   const data = [
-      {key:'1', value:'Ashes of Outland'},
-      {key:'2', value:'Caverns of Time'},
-      {key:'3', value:'Core'},
-      {key:'4', value:'Descent of Dragons'},
-      {key:'5', value:'Forged in the Barrens'},
-      {key:'6', value:'Path of Arthas'},
-      {key:'7', value:'United in Stormwind'},
-      {key:'8', value:' Saviors of Uldum'},
-      {key:'9', value:'TITANS'},
-      {key:'10', value:'Voyage to the Sunken City'}
-   ];
 
-   //Request configuration.
-   const options = {
-      method: 'GET',
-      params: {collectible: '1'},
-      headers: {
-        'X-RapidAPI-Key': '81935cf82dmsh5cbfb766a872ce7p16553cjsnec4be953734c',
-        'X-RapidAPI-Host': 'omgvamp-hearthstone-v1.p.rapidapi.com'
-      }
-    };
-
-   //Function to handle with searches.
+   //Function to handle with API request by deck name.
    async function handleSearch(deckName){
+      //Start loading.
       setLoading(true);
 
       try {
          //Do the request to hearthstone API.
          const response = await axios.request(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/sets/${deckName}`, options);
          const data = response.data;
-
          var imagesUri = [];
 
          //Extract all images found.
@@ -62,9 +41,11 @@ export default function SearchByDeck() {
          alert(error);
       }
 
+      //Stop loading.
       setLoading(false);
    }
 
+   //Function to show each card.
    const handleCards = (item) => {
       return (
          <TouchableOpacity 
@@ -79,29 +60,32 @@ export default function SearchByDeck() {
       );
    }
 
-  return (
-    <View style={ styles.container }>
-      <Text style={ styles.deckName }>Deck Name</Text>
-      <SelectList
-         dropdownStyles={ styles.dropdownMenu }
-         placeholder='Select a deck'
-         searchPlaceholder='Search'
-         setSelected={(deckName) => handleSearch(deckName)} 
-         data={data} 
-         save="value"
-      />
-      {
-         loading ? 
-            <View style={ styles.loading }>
-               <ActivityIndicator size={40} color='black'></ActivityIndicator>
-            </View>
-         :
-            <FlatList
-               style={ styles.list }
-               data={cardsUri}
-               renderItem={({item}) => handleCards(item)}
+   if(isLoaded){
+      return (
+         <View style={ styles.container }>
+           <Text style={ styles.deckName }>Deck Name</Text>
+           <SelectList
+               dropdownStyles={ styles.dropdownMenu }
+               placeholder='Select a deck'
+               searchPlaceholder='Search'
+               fontFamily='IBMPlexMono'
+               setSelected={ (deckName) => handleSearch(deckName) } 
+               data={ decks } 
+               save="value"
             />
-      }
-    </View>
-  )
+            {
+               loading ? 
+                  <View style={ styles.loading }>
+                     <ActivityIndicator size={40} color='black'></ActivityIndicator>
+                  </View>
+               :
+                  <FlatList
+                     style={ styles.list }
+                     data={cardsUri}
+                     renderItem={({item}) => handleCards(item)}
+                  />
+            }
+         </View>
+      )
+   }
 }

@@ -2,6 +2,7 @@ import { ActivityIndicator, Image, Text, TextInput, TouchableHighlight, Touchabl
 import { useState } from 'react';
 import axios from 'axios';
 import styles from '../Styles/SearchByNameStyle';
+import { options } from '../RequestOptionsAndDecks';
 
 export default function SearchByName({navigation}) {
    const [cardName, setCardName] = useState('');
@@ -12,20 +13,9 @@ export default function SearchByName({navigation}) {
    const [loading, setLoading] = useState(false);
    const [request, setRequest] = useState(false);
    
-   //Request configuration.
-   var options = {
-      method: 'GET',
-      params: { collectible: '1' },
-      responseType: 'json',
-      headers: {
-         'X-RapidAPI-Key': '81935cf82dmsh5cbfb766a872ce7p16553cjsnec4be953734c',
-         'X-RapidAPI-Host': 'omgvamp-hearthstone-v1.p.rapidapi.com',
-      },
-   };
-
    //Function to handle with searches.
    const handleSearch = async () => {
-      //Starts loading.
+      //Start loading.
       setLoading(true);
       setUri('https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg');
       setRequest(false);
@@ -56,16 +46,18 @@ export default function SearchByName({navigation}) {
             }
          }
          catch(error){
-            alert('Card not find!\nDid u type the card name correctly?');
+            alert('Card not find!\n\nDid you type the card name correctly?');
          }
       } 
       else{
          alert('Please, type a card name!');
       }
 
+      //Stop loading.
       setLoading(false);
    }
 
+   //Function to handle with click on card.
    const handleCardPress = () => {
       if(request){
          navigation.navigate('CardInformation', {data: data});
@@ -97,9 +89,9 @@ export default function SearchByName({navigation}) {
             onChangeText={(name) => setCardName(name.toLowerCase())}
             placeholder='Type a card name'
          />
-        <TouchableHighlight style={ styles.button } onPress={handleSearch}>
+         <TouchableHighlight style={ styles.button } onPress={handleSearch}>
             <Text style={ styles.buttonText }>Search</Text>
-        </TouchableHighlight>
+         </TouchableHighlight>
       </View>
    );
 }
