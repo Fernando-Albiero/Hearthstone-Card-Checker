@@ -32,8 +32,8 @@ function BottomNavigator(){
                unmountOnBlur: true,
                tabBarIcon: () => 
                   <Image 
-                     source={require('./assets/cardBack.png')} 
-                     style={{width: 22, height: 33, resizeMode:'center'}}
+                     source={require('./assets/deck.png')} 
+                     style={{width: 34, height: 33, resizeMode:'contain'}}
                   />
                }}
                name="SearchByDeck"
