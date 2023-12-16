@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Welcome from './Screens/Welcome';
 import SearchByName from './Screens/SearchByName';
 import CardInformation from './Screens/CardInformation';
+import SearchByDeck from './Screens/SearchByDeck';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -24,6 +25,18 @@ function BottomNavigator(){
                }}
                name="SearchByName"
                component={SearchByName}
+         />
+         <Tab.Screen 
+            options={{
+               headerShown: false,
+               tabBarIcon: () => 
+                  <Image 
+                     source={require('./assets/cardBack.png')} 
+                     style={{width: 22, height: 33, resizeMode:'center'}}
+                  />
+               }}
+               name="SearchByDeck"
+               component={SearchByDeck}
          />
          <Tab.Screen
             options={{
