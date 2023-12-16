@@ -1,24 +1,16 @@
-import {
-   View,
-   Image,
-   TextInput,
-   Text,
-   ActivityIndicator,
-   TouchableHighlight,
-   TouchableOpacity,
-} from 'react-native';
+import { ActivityIndicator, Image, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from 'react-native';
 import { useState } from 'react';
 import axios from 'axios';
 import styles from '../Styles/SearchByNameStyle';
 
 export default function SearchByName({navigation}) {
    const [cardName, setCardName] = useState('');
-   const [data, setData] = useState({});
-   const [loading, setLoading] = useState(false);
-   const [request, setRequest] = useState(false);
    const [uri, setUri] = useState(
       'https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg'
    );
+   const [data, setData] = useState({});
+   const [loading, setLoading] = useState(false);
+   const [request, setRequest] = useState(false);
    
    //Request configuration.
    var options = {
@@ -35,7 +27,6 @@ export default function SearchByName({navigation}) {
    const handleSearch = async () => {
       //Starts loading.
       setLoading(true);
-
       setUri('https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg');
       setRequest(false);
 
@@ -46,7 +37,6 @@ export default function SearchByName({navigation}) {
             const response = await axios.request(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/${cardName}`, options);
             const data = response.data;
             var imagesUri = [];
-            setData(data);
 
             //Extract all images found.
             for(let i=0; i<data.length; i++){
@@ -58,6 +48,7 @@ export default function SearchByName({navigation}) {
             //If card has a image, shows the first one.
             if(imagesUri.length > 0){
                setUri(imagesUri[0]);
+               setData(data);
                setRequest(true);
             }
             else{
@@ -103,7 +94,7 @@ export default function SearchByName({navigation}) {
          }
          <TextInput
             style={ styles.input }
-            onChangeText={(name) => setCardName(name.toUpperCase())}
+            onChangeText={(name) => setCardName(name.toLowerCase())}
             placeholder='Type a card name'
          />
         <TouchableHighlight style={ styles.button } onPress={handleSearch}>
