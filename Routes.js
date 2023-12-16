@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Welcome from './Screens/Welcome';
 import SearchByName from './Screens/SearchByName';
+import CardInformation from './Screens/CardInformation';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -23,6 +24,17 @@ function BottomNavigator(){
                }}
                name="SearchByName"
                component={SearchByName}
+         />
+         <Tab.Screen
+            options={{
+               headerShown: false,
+               tabBarStyle: {
+                  display: 'none'
+               },
+               tabBarButton: () => null
+            }}
+            name='CardInformation'
+            component={CardInformation}
          />
       </Tab.Navigator>
    );
