@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
       height: '50%',
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: 'pink'
    }
 })
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { View, Text, Image, ActivityIndicator } from 'react-native';
+import { View, Text, Image, ActivityIndicator, ImageBackground } from 'react-native';
 import { useFonts } from 'expo-font';
 import styles from './CardInformationStyle';
 
@@ -61,7 +61,9 @@ export default function CardInformation({route}) {
 
    if(isLoaded){
       return (
-         <View style={ styles.container }>
+         <ImageBackground 
+            style={ styles.container }
+            source={ require('../assets/background.png') }>
            {
               loading ? (
                  <View style={ styles.loading }>
@@ -98,7 +100,7 @@ export default function CardInformation({route}) {
                  </View>
               )
            }
-         </View>
+         </ImageBackground>
       )  
    }
 }
