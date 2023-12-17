@@ -14,7 +14,7 @@ export default function SearchByName({navigation}) {
    const [request, setRequest] = useState(false);
    
    //Function to handle with searches.
-   const handleSearch = async () => {
+   const requestAPI = async () => {
       //Start loading.
       setLoading(true);
       setUri('https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg');
@@ -69,7 +69,7 @@ export default function SearchByName({navigation}) {
          {
             loading ? (
                <View style={ styles.cardConteiner }>
-                  <ActivityIndicator size={40} color="black" />
+                  <ActivityIndicator size={ 40 } color="black" />
                </View>
              ) : 
              (
@@ -86,10 +86,10 @@ export default function SearchByName({navigation}) {
          }
          <TextInput
             style={ styles.input }
-            onChangeText={(name) => setCardName(name.toLowerCase())}
+            onChangeText={ (name) => setCardName(name.toLowerCase()) }
             placeholder='Type a card name'
          />
-         <TouchableHighlight style={ styles.button } onPress={handleSearch}>
+         <TouchableHighlight style={ styles.button } onPress={ requestAPI }>
             <Text style={ styles.buttonText }>Search</Text>
          </TouchableHighlight>
       </View>

@@ -14,7 +14,7 @@ const Tab = createBottomTabNavigator();
 
 function BottomNavigator(){
    return (
-      <Tab.Navigator>
+      <Tab.Navigator backBehavior='history'>
          <Tab.Screen 
             options={{
                headerShown: false,

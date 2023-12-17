@@ -12,13 +12,14 @@ let customFonts = {
    'IBMPlexMono-Bold' : require('../assets/fonts/IBMPlexMono-Bold.ttf')
 };
 
-export default function SearchByDeck() {
+export default function SearchByDeck({navigation}) {
    const [cardsUri, setCardsUri] = useState([]);
    const [loading, setLoading] = useState(false);
    const [isLoaded] = useFonts(customFonts);
+   const [cardInformation, setCardInformation] = useState([]);
 
    //Function to handle with API request by deck name.
-   async function handleSearch(deckName){
+   async function requestAPI(deckName){
       //Start loading.
       setLoading(true);
 
@@ -26,15 +27,18 @@ export default function SearchByDeck() {
          //Do the request to hearthstone API.
          const response = await axios.request(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/sets/${deckName}`, options);
          const data = response.data;
+         var cards = [];
          var imagesUri = [];
 
          //Extract all images found.
          for(let i=0; i<data.length; i++){
             if(data[i].hasOwnProperty('img')){
+               cards.push(data[i]);
                imagesUri.push(data[i].img);
             }
          }
 
+         setCardInformation(cards);
          setCardsUri(imagesUri);
       }
       catch(error){
@@ -46,18 +50,23 @@ export default function SearchByDeck() {
    }
 
    //Function to show each card.
-   const handleCards = (item) => {
+   const showCards = (item) => {
       return (
          <TouchableOpacity 
             style={ styles.cardConteiner }
-            onPress={ () => {} }>
+            onPress={ () => handleCardPress(item) }>
             <Image
                style={ styles.image }
-               source={{ uri: item }}
+               source={{ uri: item.img }}
                resizeMode="contain"
             />
          </TouchableOpacity>
       );
+   }
+
+   //Function to handle with click on card.
+   const handleCardPress = (item) => {
+      navigation.navigate('CardInformation', {cardName: item.name});
    }
 
    if(isLoaded){
@@ -69,20 +78,20 @@ export default function SearchByDeck() {
                placeholder='Select a deck'
                searchPlaceholder='Search'
                fontFamily='IBMPlexMono'
-               setSelected={ (deckName) => handleSearch(deckName) } 
+               setSelected={ (deckName) => requestAPI(deckName) } 
                data={ decks } 
                save="value"
             />
             {
                loading ? 
                   <View style={ styles.loading }>
-                     <ActivityIndicator size={40} color='black'></ActivityIndicator>
+                     <ActivityIndicator size={ 40 } color='black'></ActivityIndicator>
                   </View>
                :
                   <FlatList
                      style={ styles.list }
-                     data={cardsUri}
-                     renderItem={({item}) => handleCards(item)}
+                     data={ cardInformation }
+                     renderItem={ ({item}) => showCards(item) }
                   />
             }
          </View>
