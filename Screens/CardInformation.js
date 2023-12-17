@@ -1,19 +1,11 @@
 import { useEffect, useState } from 'react';
 import { View, Text, Image, ActivityIndicator, ImageBackground } from 'react-native';
 import axios from 'axios';
-import { useFonts } from 'expo-font';
 import styles from '../Styles/CardInformationStyle';
 import { options } from '../RequestOptionsAndDecks';
 
-let customFonts = {
-   'BelweBoldBT': require('../assets/fonts/BelweBoldBT.ttf'),
-   'Inter' : require('../assets/fonts/Inter-Regular.ttf'),
-   'Inter-Bold' : require('../assets/fonts/Inter-Bold.ttf')
- };
-
 export default function CardInformation({route}) {
-   const [isLoaded] = useFonts(customFonts);
-   const [loading, setLoading] = useState(false);
+   const [loading, setLoading] = useState(true);
    const {cardName} = route.params;
    const [card, setCard] = useState(null);
    
@@ -62,48 +54,46 @@ export default function CardInformation({route}) {
       return txt;
    }
 
-   if(isLoaded){
-      return (
-         <ImageBackground 
-            style={ styles.container }
-            source={ require('../assets/background.png') }>
-           {
-              loading ? (
-                 <View style={ styles.loading }>
-                    <ActivityIndicator size={40} color='black'/>
-                 </View>
-              ) :
-              (
-                 <View style={ styles.inner }>
-                     <Text style={ styles.cardName }>{card.name}</Text>
-                     <Text style={ styles.cardFlavor }>{card.flavor}</Text>
-                     <Text style={ styles.cardText }>{clearText(card.text)}</Text>
-                     <Text style={ styles.titles }>Type:{" "}
-                        <Text style={ styles.information }>{card.type}</Text>
-                     </Text>
-                     <Text style={ styles.titles }>Rarity:{" "}
-                        <Text style={ styles.information }>{card.rarity}</Text>
-                     </Text>
-                     <Text style={ styles.titles }>Set:{" "}
-                        <Text style={ styles.information }>{card.cardSet}</Text>
-                     </Text>
-                     <Text style={ styles.titles }>Class:{" "} 
-                        <Text style={ styles.information }>{card.playerClass}</Text>
-                     </Text>
-                     <Text style={ styles.titles }>Artist:{" "}
-                        <Text style={ styles.information }>{card.artist}</Text>
-                     </Text>
-                     <View style={ styles.imageConteiner}>
-                        <Image
-                           style={{ width: '50%', height: '80%', marginTop:-30 }}
-                           source={{ uri: card.img }}
-                           resizeMode="contain"
-                        />
-                     </View>
-                 </View>
-              )
-           }
-         </ImageBackground>
-      )  
-   }
+   return (
+      <ImageBackground 
+         style={ styles.container }
+         source={ require('../assets/background.png') }>
+         {
+            loading ? (
+               <View style={ styles.loading }>
+                  <ActivityIndicator size={40} color='black'/>
+               </View>
+            ) :
+            (
+               <View style={ styles.inner }>
+                  <Text style={ styles.cardName }>{card.name}</Text>
+                  <Text style={ styles.cardFlavor }>{card.flavor}</Text>
+                  <Text style={ styles.cardText }>{clearText(card.text)}</Text>
+                  <Text style={ styles.titles }>Type:{" "}
+                     <Text style={ styles.information }>{card.type}</Text>
+                  </Text>
+                  <Text style={ styles.titles }>Rarity:{" "}
+                     <Text style={ styles.information }>{card.rarity}</Text>
+                  </Text>
+                  <Text style={ styles.titles }>Set:{" "}
+                     <Text style={ styles.information }>{card.cardSet}</Text>
+                  </Text>
+                  <Text style={ styles.titles }>Class:{" "} 
+                     <Text style={ styles.information }>{card.playerClass}</Text>
+                  </Text>
+                  <Text style={ styles.titles }>Artist:{" "}
+                     <Text style={ styles.information }>{card.artist}</Text>
+                  </Text>
+                  <View style={ styles.imageConteiner}>
+                     <Image
+                        style={{ width: '50%', height: '80%', marginTop:-30 }}
+                        source={{ uri: card.img }}
+                        resizeMode="contain"
+                     />
+                  </View>
+               </View>
+            )
+         }
+      </ImageBackground>
+   )  
 }

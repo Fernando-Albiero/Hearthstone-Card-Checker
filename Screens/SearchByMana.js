@@ -1,25 +1,17 @@
 import { ActivityIndicator, FlatList, Image, Text, TouchableOpacity, View, } from "react-native";
 import { useState } from "react";
-import { useFonts } from "expo-font";
 import axios from "axios";
 import styles from "../Styles/SearchByManaStyle";
 import { options } from "../RequestOptionsAndDecks";
-
-let customFonts = {
-  'IBMPlexMono': require("../assets/fonts/IBMPlexMono-Regular.ttf"),
-  'IBMPlexMono-Bold': require("../assets/fonts/IBMPlexMono-Bold.ttf"),
-};
 
 var opt = JSON.parse(JSON.stringify(options));
 
 export default function SearchByMana({navigation}) {
    const [loading, setLoading] = useState(false);
-   const [isFontLoaded] = useFonts(customFonts);
    const [selected, setSelected] = useState(undefined);
    const [cards, setCards] = useState([]);
    
-
-  const costs = [
+   const costs = [
       { id: 0, uri: [require("../assets/0Unselected.png"), require("../assets/0Selected.png")]},
       { id: 1, uri: [require("../assets/1Unselected.png"), require("../assets/1Selected.png")]},
       { id: 2, uri: [require("../assets/2Unselected.png"), require("../assets/2Selected.png")]},
@@ -109,32 +101,30 @@ export default function SearchByMana({navigation}) {
     );
   };
 
-  if (isFontLoaded) {
-      return (
-         <View style={styles.container}>
-            <Text style={styles.manaCostText}>Mana Cost</Text>
-            <FlatList
-               style={styles.costsList}
-               horizontal={true}
-               data={costs}
-               renderItem={({ item }) => handleCosts(item)}
-            />
-            {
-               loading ? (
-                  <View style={styles.loading}>
-                     <Text style={ styles.loadingMessage}>This operation can take a while because there are many cards.</Text>
-                     <Text style={ styles.loadingSubMessage}>Please wait a moment!</Text>
-                     <ActivityIndicator size={40} color="black"></ActivityIndicator>
-                  </View>
-               ) : (
-                  <FlatList
-                     style={styles.cardList}
-                     data={cards}
-                     renderItem={({ item }) => handleCards(item) }
-                  />
-               )
-            }
-         </View>
-      );
-   }
+   return (
+      <View style={styles.container}>
+         <Text style={styles.manaCostText}>Mana Cost</Text>
+         <FlatList
+            style={styles.costsList}
+            horizontal={true}
+            data={costs}
+            renderItem={({ item }) => handleCosts(item)}
+         />
+         {
+            loading ? (
+               <View style={styles.loading}>
+                  <Text style={ styles.loadingMessage}>This operation can take a while because there are many cards.</Text>
+                  <Text style={ styles.loadingSubMessage}>Please wait a moment!</Text>
+                  <ActivityIndicator size={40} color="black"></ActivityIndicator>
+               </View>
+            ) : (
+               <FlatList
+                  style={styles.cardList}
+                  data={cards}
+                  renderItem={({ item }) => handleCards(item) }
+               />
+            )
+         }
+      </View>
+   );
 }

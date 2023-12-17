@@ -1,20 +1,13 @@
 import { ActivityIndicator, FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
 import { SelectList } from 'react-native-dropdown-select-list';
 import { useState } from 'react';
-import { useFonts } from 'expo-font';
 import axios from 'axios';
 import styles from '../Styles/SearchByDeckStyle';
 import { options } from '../RequestOptionsAndDecks';
 import { decks } from '../RequestOptionsAndDecks';
 
-let customFonts = {
-   'IBMPlexMono' : require('../assets/fonts/IBMPlexMono-Regular.ttf'),
-   'IBMPlexMono-Bold' : require('../assets/fonts/IBMPlexMono-Bold.ttf')
-};
-
 export default function SearchByDeck({navigation}) {
    const [loading, setLoading] = useState(false);
-   const [isLoaded] = useFonts(customFonts);
    const [cardInformation, setCardInformation] = useState([]);
 
    //Function to handle with API request by deck name.
@@ -60,32 +53,30 @@ export default function SearchByDeck({navigation}) {
       );
    }
 
-   if(isLoaded){
-      return (
-         <View style={ styles.container }>
-           <Text style={ styles.deckName }>Deck Name</Text>
-           <SelectList
-               dropdownStyles={ styles.dropdownMenu }
-               placeholder='Select a deck'
-               searchPlaceholder='Search'
-               fontFamily='IBMPlexMono'
-               setSelected={ (deckName) => requestAPI(deckName) } 
-               data={ decks } 
-               save="value"
-            />
-            {
-               loading ? 
-                  <View style={ styles.loading }>
-                     <ActivityIndicator size={ 40 } color='black'></ActivityIndicator>
-                  </View>
-               :
-                  <FlatList
-                     style={ styles.list }
-                     data={ cardInformation }
-                     renderItem={ ({item}) => showCards(item) }
-                  />
-            }
-         </View>
-      )
-   }
+   return (
+      <View style={ styles.container }>
+         <Text style={ styles.deckName }>Deck Name</Text>
+         <SelectList
+            dropdownStyles={ styles.dropdownMenu }
+            placeholder='Select a deck'
+            searchPlaceholder='Search'
+            fontFamily='IBMPlexMono'
+            setSelected={ (deckName) => requestAPI(deckName) } 
+            data={ decks } 
+            save="value"
+         />
+         {
+            loading ? 
+               <View style={ styles.loading }>
+                  <ActivityIndicator size={ 40 } color='black'></ActivityIndicator>
+               </View>
+            :
+               <FlatList
+                  style={ styles.list }
+                  data={ cardInformation }
+                  renderItem={ ({item}) => showCards(item) }
+               />
+         }
+      </View>
+   )
 }

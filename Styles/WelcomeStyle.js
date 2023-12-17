@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
    },
    buttonText:{
       color: 'white',
-      fontWeight: 'bold',
+      fontFamily: 'IBMPlexMono-Bold',
       fontSize: 16
    },
    credits:{

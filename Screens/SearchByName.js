@@ -84,7 +84,7 @@ export default function SearchByName({navigation}) {
          <TextInput
             style={ styles.input }
             onChangeText={ (name) => setCardName(name.toLowerCase()) }
-            placeholder='Type a card name'
+            placeholder='Type a card name...'
          />
          <TouchableHighlight style={ styles.button } onPress={ requestAPI }>
             <Text style={ styles.buttonText }>Search</Text>

@@ -15,13 +15,13 @@ const styles = StyleSheet.create({
    input:{
       width: '90%',
       height: 40,
-      borderWidth: 1,
+      borderWidth: 2,
       borderRadius: 20,
       marginTop: 15,
       marginBottom: 15,
-      paddingLeft: 10,
+      paddingLeft: 20,
       fontSize: 16,
-      //fontFamily: 'fix it'
+      fontFamily: 'IBMPlexMono'
    },
    button:{
       justifyContent: 'center',
@@ -34,8 +34,8 @@ const styles = StyleSheet.create({
    },
    buttonText:{
       color: 'white',
-      fontWeight: 'bold',
-      fontSize: 16
+      fontSize: 16,
+      fontFamily: 'IBMPlexMono-Bold'
    }
 })
 
