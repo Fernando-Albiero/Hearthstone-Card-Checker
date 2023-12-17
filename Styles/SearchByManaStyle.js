@@ -15,18 +15,18 @@ const styles = StyleSheet.create({
       alignSelf: "flex-start"
    },
    costsList:{
-      height: '6%',
+      height: '12%',
       flexGrow: 0,
       marginBottom: 10,
    },
    costs:{
-      width: 25, 
-      height: 25, 
+      width: 30, 
+      height: 30, 
       resizeMode: 'contain'
    },
    loading:{
       width: '100%', 
-      height: '85%', 
+      height: '73%', 
       justifyContent:'center', 
       alignItems: 'center',
    },

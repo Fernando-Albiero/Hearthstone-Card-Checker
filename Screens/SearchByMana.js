@@ -28,20 +28,9 @@ export default function SearchByMana({navigation}) {
   const handleCosts = (item) => {
     var image = selected == item.id ? item.uri[1] : item.uri[0];
 
-    if (item.id == 10) {
       return (
         <TouchableOpacity
-          onPress={() => {
-            setSelected(item.id);
-            handleSearch(item);
-          }}
-        >
-          <Image source={image} style={styles.costs}></Image>
-        </TouchableOpacity>
-      );
-    } else {
-      return (
-        <TouchableOpacity
+         style={{ marginRight: 10}}
           onPress={() => {
             setSelected(item.id);
             handleSearch(item);
@@ -49,11 +38,10 @@ export default function SearchByMana({navigation}) {
         >
           <Image
             source={image}
-            style={{ width: 30, height: 30, resizeMode: "contain" }}
+            style={ styles.costs}
           ></Image>
         </TouchableOpacity>
       );
-    }
   };
 
   const handleSearch = async (item) => {
@@ -106,7 +94,8 @@ export default function SearchByMana({navigation}) {
          <Text style={styles.manaCostText}>Mana Cost</Text>
          <FlatList
             style={styles.costsList}
-            horizontal={true}
+            columnWrapperStyle={{justifyContent: 'center'}}
+            numColumns={6}
             data={costs}
             renderItem={({ item }) => handleCosts(item)}
          />
