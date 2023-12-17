@@ -27,19 +27,16 @@ export default function SearchByDeck({navigation}) {
          //Do the request to hearthstone API.
          const response = await axios.request(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/sets/${deckName}`, options);
          const data = response.data;
-         var cards = [];
-         var imagesUri = [];
+         var cards = []
 
          //Extract all images found.
          for(let i=0; i<data.length; i++){
             if(data[i].hasOwnProperty('img')){
                cards.push(data[i]);
-               imagesUri.push(data[i].img);
             }
          }
 
          setCardInformation(cards);
-         setCardsUri(imagesUri);
       }
       catch(error){
          alert(error);

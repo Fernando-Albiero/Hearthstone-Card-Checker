@@ -6,10 +6,10 @@ import { options } from '../RequestOptionsAndDecks';
 
 export default function SearchByName({navigation}) {
    const [cardName, setCardName] = useState('');
-   const [uri, setUri] = useState(
+   const [cardImage, setCardImage] = useState(
       'https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg'
    );
-   const [data, setData] = useState({});
+   const [card, setCard] = useState({});
    const [loading, setLoading] = useState(false);
    const [request, setRequest] = useState(false);
    
@@ -17,7 +17,7 @@ export default function SearchByName({navigation}) {
    const requestAPI = async () => {
       //Start loading.
       setLoading(true);
-      setUri('https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg');
+      setCardImage('https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg');
       setRequest(false);
 
       //Verify card name.
@@ -26,23 +26,20 @@ export default function SearchByName({navigation}) {
             //Do the request to hearthstone API.
             const response = await axios.request(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/${cardName}`, options);
             const data = response.data;
-            var imagesUri = [];
 
-            //Extract all images found.
-            for(let i=0; i<data.length; i++){
-               if(data[i].hasOwnProperty('img')){
-                  imagesUri.push(data[i].img);
+            if(data.length > 0){
+               //Extract card image and information.
+               for(let i=0; i<data.length; i++){
+                  if(data[i].hasOwnProperty('img')){
+                     setCard(data[i]);
+                     setCardImage(data[i].img);
+                     setRequest(true);
+                     break;
+                  }
                }
             }
-
-            //If card has a image, shows the first one.
-            if(imagesUri.length > 0){
-               setUri(imagesUri[0]);
-               setData(data);
-               setRequest(true);
-            }
             else{
-               alert('This card doesn\'t have a image available');
+               alert('Card not find!\n\nDid you type the card name correctly?');
             }
          }
          catch(error){
@@ -60,7 +57,7 @@ export default function SearchByName({navigation}) {
    //Function to handle with click on card.
    const handleCardPress = () => {
       if(request){
-         navigation.navigate('CardInformation', {data: data});
+         navigation.navigate('CardInformation', {cardName: card.name});
       }
    }
 
@@ -78,7 +75,7 @@ export default function SearchByName({navigation}) {
                   onPress={ handleCardPress }>
                   <Image
                      style={{ width: '80%', height: '80%' }}
-                     source={{ uri: uri }}
+                     source={{ uri: cardImage }}
                      resizeMode="contain"
                   />
                </TouchableOpacity>
