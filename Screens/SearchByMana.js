@@ -3,17 +3,21 @@ import { useState } from "react";
 import { useFonts } from "expo-font";
 import axios from "axios";
 import styles from "../Styles/SearchByManaStyle";
+import { options } from "../RequestOptionsAndDecks";
 
 let customFonts = {
   'IBMPlexMono': require("../assets/fonts/IBMPlexMono-Regular.ttf"),
   'IBMPlexMono-Bold': require("../assets/fonts/IBMPlexMono-Bold.ttf"),
 };
 
-export default function SearchByMana() {
+var opt = JSON.parse(JSON.stringify(options));
+
+export default function SearchByMana({navigation}) {
    const [loading, setLoading] = useState(false);
    const [isFontLoaded] = useFonts(customFonts);
    const [selected, setSelected] = useState(undefined);
-   const [cardsUri, setCardsUri] = useState([]);
+   const [cards, setCards] = useState([]);
+   
 
   const costs = [
       { id: 0, uri: [require("../assets/0Unselected.png"), require("../assets/0Selected.png")]},
@@ -63,36 +67,30 @@ export default function SearchByMana() {
   const handleSearch = async (item) => {
     setLoading(true);
 
-    const options = {
-      method: "GET",
-      params: {
-        cost: item.id,
-        collectible: "1",
-      },
-      headers: {
-        "X-RapidAPI-Key": "81935cf82dmsh5cbfb766a872ce7p16553cjsnec4be953734c",
-        "X-RapidAPI-Host": "omgvamp-hearthstone-v1.p.rapidapi.com",
-      },
-    };
+    opt.params.cost = item.id;
 
     try {
       //Do the request to hearthstone API.
-      const response = await axios.request(
-        "https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/classes/Death%20Knight",
-        options
-      );
+      const response = await axios.request('https://omgvamp-hearthstone-v1.p.rapidapi.com/cards', opt);
       const data = response.data;
 
-      var imagesUri = [];
+      var cards = [];
 
-      //Extract all images found.
-      for (let i = 0; i < data.length; i++) {
-        if (data[i].hasOwnProperty("img")) {
-          imagesUri.push(data[i].img);
-        }
+      //Get each deck in data.
+      for (let deck in data) {
+         //Extract deck information
+         var array = data[deck];
+         
+         //Extract images from deck cards.
+         for(let i=0; i<array.length; i++){
+            if(array[i].hasOwnProperty("img")){
+               cards.push(array[i]);
+            }
+         }
       }
 
-      setCardsUri(imagesUri);
+      setCards(cards);
+
     } catch (error) {
       alert(error);
     }
@@ -102,10 +100,10 @@ export default function SearchByMana() {
 
   const handleCards = (item) => {
     return (
-      <TouchableOpacity style={styles.cardConteiner} onPress={() => {}}>
+      <TouchableOpacity style={styles.cardConteiner} onPress={() => navigation.navigate('CardInformation', {cardName: item.name})}>
         <Image
           style={{ width: 250, height: 250, resizeMode: "contain" }}
-          source={{ uri: item }}
+          source={{ uri: item.img }}
         />
       </TouchableOpacity>
     );
@@ -124,13 +122,15 @@ export default function SearchByMana() {
             {
                loading ? (
                   <View style={styles.loading}>
+                     <Text style={ styles.loadingMessage}>This operation can take a while because there are many cards.</Text>
+                     <Text style={ styles.loadingSubMessage}>Please wait a moment!</Text>
                      <ActivityIndicator size={40} color="black"></ActivityIndicator>
                   </View>
                ) : (
                   <FlatList
                      style={styles.cardList}
-                     data={cardsUri}
-                     renderItem={({ item }) => handleCards(item)}
+                     data={cards}
+                     renderItem={({ item }) => handleCards(item) }
                   />
                )
             }

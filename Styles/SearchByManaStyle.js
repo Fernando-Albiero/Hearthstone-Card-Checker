@@ -10,8 +10,7 @@ const styles = StyleSheet.create({
    },
    manaCostText:{
       fontSize: 18,
-      fontFamily: 'IBMPlexMono',
-      fontWeight: 'bold',
+      fontFamily: 'IBMPlexMono-Bold',
       marginBottom: 10,
       alignSelf: "flex-start"
    },
@@ -30,6 +29,18 @@ const styles = StyleSheet.create({
       height: '85%', 
       justifyContent:'center', 
       alignItems: 'center',
+   },
+   loadingMessage:{
+      fontSize: 14,
+      fontFamily: 'IBMPlexMono',
+      marginBottom: 10
+   },
+   loadingSubMessage:{
+      width: '100%',
+      textAlign: 'center', 
+      fontSize: 14,
+      fontFamily: 'IBMPlexMono-Bold',
+      marginBottom: 30
    },
    cardList:{
       width: '100%',

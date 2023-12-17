@@ -24,7 +24,7 @@ function BottomNavigator(){
                      style={{width: 22, height: 33, resizeMode:'center'}}
                   />
                }}
-               name="SearchByName"
+               name="By Name"
                component={SearchByName}
          />
          <Tab.Screen 
@@ -37,20 +37,19 @@ function BottomNavigator(){
                      style={{width: 34, height: 33, resizeMode:'contain'}}
                   />
                }}
-               name="SearchByDeck"
+               name="By Deck"
                component={SearchByDeck}
          />
          <Tab.Screen 
             options={{
                headerShown: false,
-               unmountOnBlur: true,
                tabBarIcon: () => 
                   <Image 
                      source={require('./assets/selected-hexagon.png')} 
                      style={{width: 34, height: 33, resizeMode:'contain'}}
                   />
                }}
-               name="SearchByMana"
+               name="By Mana"
                component={SearchByMana}
          />
          <Tab.Screen

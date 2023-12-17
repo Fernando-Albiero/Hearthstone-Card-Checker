@@ -55,9 +55,9 @@ export default function CardInformation({route}) {
       if(txt.includes('\\n'))
          txt = txt.replace(/\\n/g, ' '); //Replace \n for blank space.
       if(txt.includes('_'))
-         txt = txt.replace(/_/g, ' '); //Replace \n for blank space.
+         txt = txt.replace(/_/g, ' '); //Replace _ for blank space.
       if(txt.includes('[x]'))
-         txt = txt.replace(/\[x\]/g, ''); //Replace \n for blank space.
+         txt = txt.replace(/\[x\]/g, ''); //Remover [x] marks.
 
       return txt;
    }

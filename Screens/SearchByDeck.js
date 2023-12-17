@@ -13,7 +13,6 @@ let customFonts = {
 };
 
 export default function SearchByDeck({navigation}) {
-   const [cardsUri, setCardsUri] = useState([]);
    const [loading, setLoading] = useState(false);
    const [isLoaded] = useFonts(customFonts);
    const [cardInformation, setCardInformation] = useState([]);
@@ -51,7 +50,7 @@ export default function SearchByDeck({navigation}) {
       return (
          <TouchableOpacity 
             style={ styles.cardConteiner }
-            onPress={ () => handleCardPress(item) }>
+            onPress={ () => navigation.navigate('CardInformation', {cardName: item.name}) }>
             <Image
                style={ styles.image }
                source={{ uri: item.img }}
@@ -59,11 +58,6 @@ export default function SearchByDeck({navigation}) {
             />
          </TouchableOpacity>
       );
-   }
-
-   //Function to handle with click on card.
-   const handleCardPress = (item) => {
-      navigation.navigate('CardInformation', {cardName: item.name});
    }
 
    if(isLoaded){
