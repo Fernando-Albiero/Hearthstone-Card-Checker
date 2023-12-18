@@ -6,9 +6,7 @@ import { options } from '../RequestOptionsAndDecks';
 
 export default function SearchByName({navigation}) {
    const [cardName, setCardName] = useState('');
-   const [cardImage, setCardImage] = useState(
-      'https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg'
-   );
+   const [cardImage, setCardImage] = useState(require('../assets/cardBack2.png'));
    const [card, setCard] = useState({});
    const [loading, setLoading] = useState(false);
    const [request, setRequest] = useState(false);
@@ -17,7 +15,7 @@ export default function SearchByName({navigation}) {
    const requestAPI = async () => {
       //Start loading.
       setLoading(true);
-      setCardImage('https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg');
+      setCardImage(require('../assets/cardBack2.png'));
       setRequest(false);
 
       //Verify card name.
@@ -32,7 +30,7 @@ export default function SearchByName({navigation}) {
                for(let i=0; i<data.length; i++){
                   if(data[i].hasOwnProperty('img')){
                      setCard(data[i]);
-                     setCardImage(data[i].img);
+                     setCardImage({ uri: data[i].img});
                      setRequest(true);
                      break;
                   }
@@ -74,8 +72,8 @@ export default function SearchByName({navigation}) {
                   style={ styles.cardConteiner }
                   onPress={ handleCardPress }>
                   <Image
-                     style={{ width: '80%', height: '80%' }}
-                     source={{ uri: cardImage }}
+                     style={ styles.cardImage }
+                     source={ cardImage }
                      resizeMode="contain"
                   />
                </TouchableOpacity>

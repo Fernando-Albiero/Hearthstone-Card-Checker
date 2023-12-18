@@ -21,7 +21,7 @@ function BottomNavigator(){
                tabBarIcon: () => 
                   <Image 
                      source={require('./assets/cardBack.png')} 
-                     style={{width: 22, height: 33, resizeMode:'center'}}
+                     style={{width: 22, height: 28, resizeMode:'center'}}
                   />
                }}
                name="By Name"
@@ -46,7 +46,7 @@ function BottomNavigator(){
                tabBarIcon: () => 
                   <Image 
                      source={require('./assets/selected-hexagon.png')} 
-                     style={{width: 34, height: 33, resizeMode:'contain'}}
+                     style={{width: 28, height: 28, resizeMode:'contain'}}
                   />
                }}
                name="By Mana"

@@ -12,6 +12,11 @@ const styles = StyleSheet.create({
       height: '75%',
       width: '100%',
    },
+   cardImage:{
+      width: '85%', 
+      height: '85%',
+      resizeMode: 'contain',
+   },
    input:{
       width: '90%',
       height: 40,
