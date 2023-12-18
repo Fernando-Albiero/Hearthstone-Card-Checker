@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
    deckName:{
       fontSize: 18,
       fontFamily: 'IBMPlexMono-Bold',
-      marginBottom: 10
+      marginBottom: 30
    },
    dropdownMenu:{
       backgroundColor: "white",
@@ -18,6 +18,8 @@ const styles = StyleSheet.create({
       top: 40,
       width: "100%",
       zIndex: 999,
+      borderColor: 'black',
+      borderWidth: 2
    },
    list:{
       marginTop: 10,

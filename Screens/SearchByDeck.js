@@ -57,6 +57,7 @@ export default function SearchByDeck({navigation}) {
       <View style={ styles.container }>
          <Text style={ styles.deckName }>Deck Name</Text>
          <SelectList
+            boxStyles={{ borderWidth: 2, borderColor: 'black' }}
             dropdownStyles={ styles.dropdownMenu }
             placeholder='Select a deck'
             searchPlaceholder='Search'
