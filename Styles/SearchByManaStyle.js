@@ -57,6 +57,11 @@ const styles = StyleSheet.create({
    },
    cardConteiner:{
       alignItems: 'center',
+   },
+   cardImage:{
+      width: 300, 
+      height: 300, 
+      resizeMode: "contain"
    }
 })
 

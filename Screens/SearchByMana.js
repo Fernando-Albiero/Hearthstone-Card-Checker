@@ -88,7 +88,7 @@ export default function SearchByMana({navigation}) {
       return (
          <TouchableOpacity style={styles.cardConteiner} onPress={() => navigation.navigate('CardInformation', {cardName: item.name})}>
             <Image
-               style={{ width: 250, height: 250, resizeMode: "contain" }}
+               style={ styles.cardImage }
                source={{ uri: item.img }}
             />
          </TouchableOpacity>

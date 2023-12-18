@@ -45,7 +45,7 @@ export default function SearchByDeck({navigation}) {
             style={ styles.cardConteiner }
             onPress={ () => navigation.navigate('CardInformation', {cardName: item.name}) }>
             <Image
-               style={ styles.image }
+               style={ styles.cardImage }
                source={{ uri: item.img }}
                resizeMode="contain"
             />

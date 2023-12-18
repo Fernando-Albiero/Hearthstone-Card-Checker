@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       marginBottom: 10
    },
-   image:{
+   cardImage:{
       width: 300,
       height: 300,
       resizeMode: 'contain'
