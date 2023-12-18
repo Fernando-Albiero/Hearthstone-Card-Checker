@@ -33,10 +33,10 @@ const styles = StyleSheet.create({
    },
    loading:{
       width: '100%', 
-      height: '73%', 
+      height: '72%', 
       justifyContent:'center', 
       alignItems: 'center',
-      marginBottom: 10
+      marginBottom: 10,
    },
    loadingMessage:{
       fontSize: 14,
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
       width: 300, 
       height: 300, 
       resizeMode: "contain"
-   }
+   },
 })
 
 export default styles;

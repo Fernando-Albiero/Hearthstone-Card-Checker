@@ -4,18 +4,17 @@ const styles = StyleSheet.create({
    container:{
       flex: 1,
    },
+   scroll:{ 
+      marginTop: 50,
+   },
    loading:{
       flex: 1,
       justifyContent: 'center',
-      alignItems: 'center'
-   },
-   inner:{
-      flex: 1
+      alignItems: 'center',
    },
    cardName:{
-      fontSize: 36,
+      fontSize: 32,
       fontFamily: 'BelweBoldBT',
-      marginTop: 30,
       marginLeft: 20
    },
    cardFlavor:{
@@ -47,10 +46,18 @@ const styles = StyleSheet.create({
       marginBottom: 5
    },
    imageConteiner:{
-      width: '100%',
-      height: '50%',
       justifyContent: 'center',
       alignItems: 'center',
+   },
+   cardImage:{
+      width: 250,
+      height: 250,
+      resizeMode:"contain", 
+   },
+   back:{
+      fontSize: 10,
+      marginTop: 10,
+      marginBottom: 40
    }
 })
 
