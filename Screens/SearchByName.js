@@ -1,4 +1,4 @@
-import { ActivityIndicator, Image, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Image, ImageBackground, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from 'react-native';
 import { useState } from 'react';
 import axios from 'axios';
 import styles from '../Styles/SearchByNameStyle';
@@ -60,7 +60,9 @@ export default function SearchByName({navigation}) {
    }
 
    return (
-      <View style={ styles.container }>
+      <ImageBackground 
+         style={ styles.container }
+         source={ require('../assets/background.png')}>
          {
             loading ? (
                <View style={ styles.cardConteiner }>
@@ -68,8 +70,8 @@ export default function SearchByName({navigation}) {
                </View>
              ) : 
              (
-               <TouchableOpacity 
-                  style={ styles.cardConteiner }
+               <View style={ styles.cardConteiner }>
+                  <TouchableOpacity 
                   onPress={ handleCardPress }>
                   <Image
                      style={ styles.cardImage }
@@ -77,16 +79,24 @@ export default function SearchByName({navigation}) {
                      resizeMode="contain"
                   />
                </TouchableOpacity>
+               {
+                  request ? (
+                     <Text style={ styles.information }>Tap on card for <Text style={{ fontWeight: 'bold'}}>more</Text> information!</Text>
+                  ) : <></>
+               }
+               </View>
             )
          }
-         <TextInput
-            style={ styles.input }
-            onChangeText={ (name) => setCardName(name.toLowerCase()) }
-            placeholder='Type a card name...'
-         />
-         <TouchableHighlight style={ styles.button } onPress={ requestAPI }>
-            <Text style={ styles.buttonText }>Search</Text>
-         </TouchableHighlight>
-      </View>
+         <View style={ styles.bottomContainer }>
+            <TextInput
+               style={ styles.input }
+               onChangeText={ (name) => setCardName(name.toLowerCase()) }
+               placeholder='Type a card name...'
+            />
+            <TouchableHighlight style={ styles.button } onPress={ requestAPI }>
+               <Text style={ styles.buttonText }>Search</Text>
+            </TouchableHighlight>
+         </View>
+      </ImageBackground>
    );
 }

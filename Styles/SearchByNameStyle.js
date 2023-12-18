@@ -7,15 +7,22 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff'
    },
    cardConteiner:{
+      flex: 9,
       justifyContent: 'center',
       alignItems: 'center',
-      height: '75%',
-      width: '100%',
    },
    cardImage:{
-      width: '85%', 
-      height: '85%',
+      width: 350, 
+      height: 350,
       resizeMode: 'contain',
+   },
+   information:{
+      fontSize: 12,
+   },
+   bottomContainer:{
+      flex: 3.5,
+      alignItems: 'center',
+      width: '100%',
    },
    input:{
       width: '90%',

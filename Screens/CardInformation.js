@@ -72,7 +72,7 @@ export default function CardInformation({navigation, route}) {
                </View>
             ) :
             (
-               <View style={{ flex:1, alignItems: 'center' }}>
+               <View style={ styles.innerContainer }>
                   <ScrollView style={ styles.scroll }>
                      <Text style={ styles.cardName }>{card.name}</Text>
                      <Text style={ styles.cardFlavor }>{'\''}{card.flavor}{'\''}</Text>
@@ -102,7 +102,7 @@ export default function CardInformation({navigation, route}) {
                         />
                      </TouchableOpacity>
                   </ScrollView>
-                  <Text style={ styles.back }>Click on card to <Text style={{ fontWeight: 'bold' }}>back!</Text></Text>
+                  <Text style={ styles.back }>Tap on card to <Text style={{ fontWeight: 'bold' }}>back!</Text></Text>
                </View>
             )
          }

@@ -4,6 +4,10 @@ const styles = StyleSheet.create({
    container:{
       flex: 1,
    },
+   innerContainer:{
+      flex:1, 
+      alignItems: 'center'
+   },
    scroll:{ 
       marginTop: 50,
    },
