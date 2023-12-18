@@ -11,15 +11,22 @@ const styles = StyleSheet.create({
    manaCostText:{
       fontSize: 18,
       fontFamily: 'IBMPlexMono-Bold',
-      marginBottom: 10,
+      marginBottom: 30,
       alignSelf: "flex-start"
    },
    costsList:{
-      height: '12%',
+      height: '15%',
       flexGrow: 0,
       marginBottom: 10,
+      paddingTop: 5,
+      borderWidth: 2,
+      borderRadius: 20
    },
-   costs:{
+   costWrapper: {
+      justifyContent: 'center', 
+      paddingLeft: 20
+   },
+   costImage:{
       width: 30, 
       height: 30, 
       resizeMode: 'contain'
@@ -29,6 +36,7 @@ const styles = StyleSheet.create({
       height: '73%', 
       justifyContent:'center', 
       alignItems: 'center',
+      marginBottom: 10
    },
    loadingMessage:{
       fontSize: 14,
@@ -38,13 +46,13 @@ const styles = StyleSheet.create({
    loadingSubMessage:{
       width: '100%',
       textAlign: 'center', 
-      fontSize: 14,
+      fontSize: 18,
       fontFamily: 'IBMPlexMono-Bold',
       marginBottom: 30
    },
    cardList:{
       width: '100%',
-      height: '85%', 
+      height: '80%', 
       marginBottom: 10,
    },
    cardConteiner:{

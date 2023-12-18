@@ -7,9 +7,10 @@ import { options } from "../RequestOptionsAndDecks";
 var opt = JSON.parse(JSON.stringify(options));
 
 export default function SearchByMana({navigation}) {
-   const [loading, setLoading] = useState(false);
-   const [selected, setSelected] = useState(undefined);
    const [cards, setCards] = useState([]);
+   const [selected, setSelected] = useState(undefined);
+   const [disabled, setDisabled] = useState(false);
+   const [loading, setLoading] = useState(false);
    
    const costs = [
       { id: 0, uri: [require("../assets/0Unselected.png"), require("../assets/0Selected.png")]},
@@ -25,84 +26,89 @@ export default function SearchByMana({navigation}) {
       { id: 10, uri: [require("../assets/10Unselected.png"), require("../assets/10Selected.png")]}
   ];
 
-  const handleCosts = (item) => {
-    var image = selected == item.id ? item.uri[1] : item.uri[0];
+   const handleCosts = (item) => {
+      var image = selected == item.id ? item.uri[1] : item.uri[0];
 
+      //desabilitar todos os botões quando um foi selecionado.
       return (
-        <TouchableOpacity
-         style={{ marginRight: 10}}
-          onPress={() => {
-            setSelected(item.id);
-            handleSearch(item);
-          }}
-        >
-          <Image
-            source={image}
-            style={ styles.costs}
-          ></Image>
+         <TouchableOpacity
+            style={{ marginRight: 20}}
+            disabled={ disabled }
+            onPress={ () => {
+               setSelected(item.id);
+               handleSearch(item);
+            }}
+         >
+            <Image
+               source={image}
+               style={ styles.costImage}
+            />
         </TouchableOpacity>
       );
-  };
+   };
 
-  const handleSearch = async (item) => {
-    setLoading(true);
+   const handleSearch = async (item) => {
+      setDisabled(true);
+      setLoading(true);
 
-    opt.params.cost = item.id;
+      opt.params.cost = item.id;
+    
 
-    try {
-      //Do the request to hearthstone API.
-      const response = await axios.request('https://omgvamp-hearthstone-v1.p.rapidapi.com/cards', opt);
-      const data = response.data;
+      try {
+         //Do the request to hearthstone API.
+         const response = await axios.request('https://omgvamp-hearthstone-v1.p.rapidapi.com/cards', opt);
+         const data = response.data;
 
-      var cards = [];
+         var cards = [];
 
-      //Get each deck in data.
-      for (let deck in data) {
-         //Extract deck information
-         var array = data[deck];
+         //Get each deck in data.
+         for (let deck in data) {
+            //Extract deck information
+            var array = data[deck];
          
-         //Extract images from deck cards.
-         for(let i=0; i<array.length; i++){
-            if(array[i].hasOwnProperty("img")){
+            //Extract images from deck cards.
+            for(let i=0; i<array.length; i++){
+               if(array[i].hasOwnProperty("img")){
                cards.push(array[i]);
+               }
             }
          }
-      }
 
-      setCards(cards);
+         setCards(cards);
 
-    } catch (error) {
-      alert(error);
-    }
+      } catch (error) {
+         alert(error);
+      };
 
-    setLoading(false);
-  };
+      setLoading(false);
+      setDisabled(false);
+   }
 
   const handleCards = (item) => {
-    return (
-      <TouchableOpacity style={styles.cardConteiner} onPress={() => navigation.navigate('CardInformation', {cardName: item.name})}>
-        <Image
-          style={{ width: 250, height: 250, resizeMode: "contain" }}
-          source={{ uri: item.img }}
-        />
-      </TouchableOpacity>
-    );
-  };
+      return (
+         <TouchableOpacity style={styles.cardConteiner} onPress={() => navigation.navigate('CardInformation', {cardName: item.name})}>
+            <Image
+               style={{ width: 250, height: 250, resizeMode: "contain" }}
+               source={{ uri: item.img }}
+            />
+         </TouchableOpacity>
+      );
+   };
 
    return (
-      <View style={styles.container}>
-         <Text style={styles.manaCostText}>Mana Cost</Text>
+      <View style={ styles.container }>
+         <Text style={ styles.manaCostText }>Mana Cost</Text>
          <FlatList
-            style={styles.costsList}
-            columnWrapperStyle={{justifyContent: 'center'}}
-            numColumns={6}
-            data={costs}
-            renderItem={({ item }) => handleCosts(item)}
+            style={ styles.costsList }
+            columnWrapperStyle={ styles.costWrapper }
+            numColumns={ 6 }
+            data={ costs }
+            renderItem={ ({ item }) => handleCosts(item) }
          />
          {
             loading ? (
                <View style={styles.loading}>
-                  <Text style={ styles.loadingMessage}>This operation can take a while because there are many cards.</Text>
+                  <Text style={ styles.loadingMessage}>This operation can take a while because there are many cards to process.</Text>
                   <Text style={ styles.loadingSubMessage}>Please wait a moment!</Text>
                   <ActivityIndicator size={40} color="black"></ActivityIndicator>
                </View>
