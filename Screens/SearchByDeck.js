@@ -1,4 +1,4 @@
-import { ActivityIndicator, FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, FlatList, Image, ImageBackground, Text, TouchableOpacity, View } from 'react-native';
 import { SelectList } from 'react-native-dropdown-select-list';
 import { useState } from 'react';
 import axios from 'axios';
@@ -54,10 +54,13 @@ export default function SearchByDeck({navigation}) {
    }
 
    return (
-      <View style={ styles.container }>
+      <ImageBackground 
+         style={ styles.container }
+         imageStyle= {{ resizeMode: 'stretch' }}
+         source={ require('../assets/background.png')}>
          <Text style={ styles.deckName }>Deck Name</Text>
          <SelectList
-            boxStyles={{ borderWidth: 2, borderColor: 'black' }}
+            boxStyles={ styles.selectList }
             dropdownStyles={ styles.dropdownMenu }
             placeholder='Select a deck'
             searchPlaceholder='Search'
@@ -78,6 +81,6 @@ export default function SearchByDeck({navigation}) {
                   renderItem={ ({item}) => showCards(item) }
                />
          }
-      </View>
+      </ImageBackground>
    )
 }

@@ -65,6 +65,7 @@ export default function SearchByName({navigation}) {
    return (
       <ImageBackground 
          style={ styles.container }
+         imageStyle= {{ resizeMode: 'stretch' }}
          source={ require('../assets/background.png')}>
          {
             loading ? (

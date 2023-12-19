@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
    cardName:{
       fontSize: 32,
       fontFamily: 'BelweBoldBT',
-      marginLeft: 50,
+      marginLeft: 30,
+      marginRight: 30,
       marginBottom: 20
    },
    cardFlavor:{
@@ -29,22 +30,22 @@ const styles = StyleSheet.create({
       color: 'gray',
       fontFamily: 'Inter',
       fontStyle: 'italic',
-      marginLeft: 50,
-      marginRight: 50,
+      marginLeft: 30,
+      marginRight: 30,
       marginBottom: 10
    },
    cardText:{
       fontSize: 14,
       fontFamily: 'Inter',
-      marginLeft: 50,
-      marginRight: 50,
+      marginLeft: 30,
+      marginRight: 30,
       marginBottom: 20
    },
    titles:{
       fontSize: 14,
       fontFamily: 'Inter-Bold',
       fontWeight: 'bold',
-      marginLeft: 50,
+      marginLeft: 30,
       marginBottom: 5
    },
    information:{
