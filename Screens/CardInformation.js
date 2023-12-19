@@ -56,6 +56,8 @@ export default function CardInformation({navigation, route}) {
             txt = txt.replace(/_/g, ' '); //Replace _ for blank space.
          if(txt.includes('[x]'))
             txt = txt.replace(/\[x\]/g, ''); //Remover [x] marks.
+         if(txt.includes('$'))
+            txt = txt.replace(/\$/g, ''); //Remover [x] marks.
       }
 
       return txt;
