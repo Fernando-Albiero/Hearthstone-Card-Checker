@@ -130,6 +130,7 @@ export default function SearchByName({navigation}) {
                      Try some of these names:{'\n\n'}
                      - Archmage Antonidas{'\n'}
                      - Cage Head{'\n'}
+                     - DJ Manastorm{'\n'}
                      - Frost Strike{'\n'}
                      - The Jailer{'\n'}
                      - Ysera{'\n'}
