@@ -1,4 +1,4 @@
-import { ActivityIndicator, Image, ImageBackground, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Image, ImageBackground, Keyboard, KeyboardAvoidingView, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from 'react-native';
 import { useState } from 'react';
 import axios from 'axios';
 import styles from '../Styles/SearchByNameStyle';
@@ -14,6 +14,7 @@ export default function SearchByName({navigation}) {
    //Function to handle with searches.
    const requestAPI = async () => {
       //Start loading.
+      Keyboard.dismiss();
       setLoading(true);
       setCardImage(require('../assets/cardBack2.png'));
       setRequest(false);
@@ -54,6 +55,8 @@ export default function SearchByName({navigation}) {
 
    //Function to handle with click on card.
    const handleCardPress = () => {
+      Keyboard.dismiss();
+
       if(request){
          navigation.navigate('CardInformation', {cardName: card.name});
       }
@@ -87,7 +90,10 @@ export default function SearchByName({navigation}) {
                </View>
             )
          }
-         <View style={ styles.bottomContainer }>
+         <KeyboardAvoidingView 
+            style={ styles.bottomContainer }
+            behavior={Platform.OS === 'ios' ? 'padding' : ''}
+         >
             <TextInput
                style={ styles.input }
                onChangeText={ (name) => setCardName(name.toLowerCase()) }
@@ -96,7 +102,7 @@ export default function SearchByName({navigation}) {
             <TouchableHighlight style={ styles.button } onPress={ requestAPI }>
                <Text style={ styles.buttonText }>Search</Text>
             </TouchableHighlight>
-         </View>
+         </KeyboardAvoidingView>
       </ImageBackground>
    );
 }

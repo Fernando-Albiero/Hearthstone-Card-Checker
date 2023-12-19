@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
    container:{
       flex: 1,
       alignItems: 'center',
-      backgroundColor: '#fff'
+      marginTop: Platform.OS === 'ios' ? 50 : ''
    },
    cardConteiner:{
       flex: 9,
@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
       width: 120,
       height: 40,
       borderRadius: 20,
-      backgroundColor: 'black',
-      borderWidth: 1
+      backgroundColor: '#614326',
+      borderWidth: 3
    },
    buttonText:{
       color: 'white',

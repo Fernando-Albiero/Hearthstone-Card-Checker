@@ -4,7 +4,8 @@ const styles = StyleSheet.create({
    container:{
       flex: 1,
       alignItems: 'center',
-      backgroundColor: '#fff'
+      backgroundColor: '#fff',
+      marginTop: Platform.OS === 'ios' ? 50 : ''
    },
    welcome:{
       fontSize: 20,

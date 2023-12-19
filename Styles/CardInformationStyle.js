@@ -3,6 +3,8 @@ import { StyleSheet } from 'react-native'
 const styles = StyleSheet.create({
    container:{
       flex: 1,
+      marginTop: Platform.OS === 'ios' ? 50 : '',
+      marginBottom: Platform.OS === 'ios' ? 30 : '',
    },
    innerContainer:{
       flex:1, 
@@ -19,43 +21,44 @@ const styles = StyleSheet.create({
    cardName:{
       fontSize: 32,
       fontFamily: 'BelweBoldBT',
-      marginLeft: 20
+      marginLeft: 50,
+      marginBottom: 20
    },
    cardFlavor:{
       fontSize: 16,
       color: 'gray',
       fontFamily: 'Inter',
       fontStyle: 'italic',
-      marginLeft: 20,
-      marginRight: 20,
+      marginLeft: 50,
+      marginRight: 50,
       marginBottom: 10
    },
    cardText:{
       fontSize: 14,
       fontFamily: 'Inter',
-      marginLeft: 20,
-      marginRight: 20,
+      marginLeft: 50,
+      marginRight: 50,
       marginBottom: 20
    },
    titles:{
       fontSize: 14,
       fontFamily: 'Inter-Bold',
       fontWeight: 'bold',
-      marginLeft: 20,
+      marginLeft: 50,
       marginBottom: 5
    },
    information:{
       fontSize: 12,
       fontFamily: 'Inter',
-      marginBottom: 5
+      marginBottom: 5,
    },
    imageConteiner:{
       justifyContent: 'center',
       alignItems: 'center',
    },
    cardImage:{
-      width: 250,
-      height: 250,
+      width: 300,
+      height: 300,
       resizeMode:"contain", 
    },
    back:{

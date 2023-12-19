@@ -14,14 +14,28 @@ const Tab = createBottomTabNavigator();
 
 function BottomNavigator(){
    return (
-      <Tab.Navigator backBehavior='history'>
+      <Tab.Navigator 
+         backBehavior='history'
+         screenOptions={{
+            tabBarStyle:{
+               backgroundColor: '#614326',
+               height: 100,
+               paddingBottom: 10,
+               marginBottom: Platform.OS === 'ios' ? 30 : 0
+            },
+            tabBarInactiveTintColor: 'white',
+            tabBarLabelStyle: {
+               fontSize: 14,
+            }
+         }}
+         >
          <Tab.Screen 
             options={{
                headerShown: false,
                tabBarIcon: () => 
                   <Image 
                      source={require('./assets/cardBack.png')} 
-                     style={{width: 22, height: 28, resizeMode:'center'}}
+                     style={{width: 50, height: 50, resizeMode:'contain'}}
                   />
                }}
                name="By Name"
@@ -34,7 +48,7 @@ function BottomNavigator(){
                tabBarIcon: () => 
                   <Image 
                      source={require('./assets/deck.png')} 
-                     style={{width: 34, height: 33, resizeMode:'contain'}}
+                     style={{width: 60, height: 60, resizeMode:'contain'}}
                   />
                }}
                name="By Deck"
@@ -46,7 +60,7 @@ function BottomNavigator(){
                tabBarIcon: () => 
                   <Image 
                      source={require('./assets/selected-hexagon.png')} 
-                     style={{width: 28, height: 28, resizeMode:'contain'}}
+                     style={{width: 50, height: 50, resizeMode:'contain'}}
                   />
                }}
                name="By Mana"
@@ -70,7 +84,8 @@ function BottomNavigator(){
 export default function Routes() {
    return (
       <NavigationContainer>
-         <Stack.Navigator>
+         <Stack.Navigator
+         screenOptions={{ autoHideHomeIndicator: true }}>
             <Stack.Screen
                options={{
                   headerShown: false

@@ -64,6 +64,7 @@ export default function CardInformation({navigation, route}) {
    return (
       <ImageBackground 
          style={ styles.container }
+         imageStyle= {{ resizeMode: 'stretch' }}
          source={ require('../assets/background.png') }>
          {
             loading ? (
