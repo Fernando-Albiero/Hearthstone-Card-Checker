@@ -12,8 +12,8 @@ const styles = StyleSheet.create({
       alignItems: 'center',
    },
    cardImage:{
-      width: 350, 
-      height: 350,
+      width: 300, 
+      height: 300,
       resizeMode: 'contain',
    },
    information:{
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
       width: '100%',
    },
    input:{
-      width: '90%',
+      width: '80%',
       height: 40,
       borderWidth: 2,
       borderRadius: 20,

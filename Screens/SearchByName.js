@@ -1,5 +1,6 @@
-import { ActivityIndicator, Image, ImageBackground, Keyboard, KeyboardAvoidingView, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Image, ImageBackground, Keyboard, KeyboardAvoidingView, Modal, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from 'react-native';
 import { useState } from 'react';
+import { AntDesign } from '@expo/vector-icons'; 
 import axios from 'axios';
 import styles from '../Styles/SearchByNameStyle';
 import { options } from '../RequestOptionsAndDecks';
@@ -9,6 +10,7 @@ export default function SearchByName({navigation}) {
    const [cardImage, setCardImage] = useState(require('../assets/cardBack2.png'));
    const [card, setCard] = useState({});
    const [loading, setLoading] = useState(false);
+   const [isModalVisible, setIsModalVisible] = useState(false);
    const [request, setRequest] = useState(false);
    
    //Function to handle with searches.
@@ -76,34 +78,64 @@ export default function SearchByName({navigation}) {
              (
                <View style={ styles.cardConteiner }>
                   <TouchableOpacity 
-                  onPress={ handleCardPress }>
-                  <Image
-                     style={ styles.cardImage }
-                     source={ cardImage }
-                     resizeMode="contain"
-                  />
-               </TouchableOpacity>
-               {
-                  request ? (
-                     <Text style={ styles.information }>Tap on card for <Text style={{ fontWeight: 'bold'}}>more</Text> information!</Text>
-                  ) : <></>
-               }
+                     onPress={ handleCardPress }>
+                     <Image
+                        style={ styles.cardImage }
+                        source={ cardImage }
+                        resizeMode="contain"
+                     />
+                  </TouchableOpacity>
+                  {
+                     request ? (
+                        <Text style={ styles.information }>Tap on card for <Text style={{ fontWeight: 'bold'}}>more</Text> information!</Text>
+                     ) : <></>
+                  }
                </View>
             )
          }
          <KeyboardAvoidingView 
             style={ styles.bottomContainer }
-            behavior={Platform.OS === 'ios' ? 'padding' : ''}
-         >
-            <TextInput
-               style={ styles.input }
-               onChangeText={ (name) => setCardName(name.toLowerCase()) }
-               placeholder='Type a card name...'
-            />
+            behavior={Platform.OS === 'ios' ? 'padding' : ''}>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+               <TextInput
+                  style={ styles.input }
+                  onChangeText={ (name) => setCardName(name.toLowerCase()) }
+                  placeholder='Type a card name...'
+               />
+               <TouchableHighlight onPress={ () => setIsModalVisible(!isModalVisible) } underlayColor='none'>
+                  <AntDesign name="questioncircle" size={ 36 } color="black" style={{marginLeft: 5}} />
+               </TouchableHighlight>
+            </View>
             <TouchableHighlight style={ styles.button } onPress={ requestAPI }>
                <Text style={ styles.buttonText }>Search</Text>
             </TouchableHighlight>
          </KeyboardAvoidingView>
+         <Modal
+            visible={ isModalVisible }
+            animationType='fade'
+            statusBarTranslucent={ false }
+            onRequestClose={ () => setIsModalVisible(false) }
+            transparent={ true }>
+
+            <View 
+               style={{ width: 300, backgroundColor: 'white', borderRadius: 20, borderWidth: 2, padding: 10, alignSelf: 'center', marginTop: 100 }}>
+               <TouchableOpacity 
+                  style={{ alignSelf: 'flex-end', marginBottom: 10 }}
+                  onPress={ () => setIsModalVisible(false) }>
+                  <AntDesign name="closecircleo" size={24} color="black" />
+               </TouchableOpacity>
+            
+               <Text style={{ fontFamily: 'IBMPlexMono' }}>
+                  <Text style={{ fontSize: 16, fontFamily: 'IBMPlexMono-Bold'}}>Dont you know any card?{'\n\n'}</Text>
+                     Try some of these names:{'\n\n'}
+                     - Archmage Antonidas{'\n'}
+                     - Cage Head{'\n'}
+                     - Frost Strike{'\n'}
+                     - The Jailer{'\n'}
+                     - Ysera{'\n'}
+                  </Text>
+            </View>
+         </Modal>
       </ImageBackground>
    );
 }

@@ -47,6 +47,7 @@ export default function SearchByMana({navigation}) {
       );
    };
 
+   //implementar 10+ costs.
    const handleSearch = async (item) => {
       setDisabled(true);
       setLoading(true);
