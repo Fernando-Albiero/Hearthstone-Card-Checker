@@ -3,13 +3,13 @@ import { StyleSheet } from 'react-native'
 const styles = StyleSheet.create({
    container:{
       flex: 1,
+      justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: '#fff',
-      marginTop: Platform.OS === 'ios' ? 50 : ''
+      
    },
    welcome:{
       fontSize: 20,
-      marginTop: 50,
       fontFamily: 'IBMPlexMono'
    },
    title:{

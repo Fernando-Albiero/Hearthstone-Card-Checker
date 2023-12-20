@@ -1,4 +1,6 @@
 //Request configuration.
+import { Dimensions } from 'react-native';
+
 const options = {
    method: 'GET',
    params: {collectible: '1'},

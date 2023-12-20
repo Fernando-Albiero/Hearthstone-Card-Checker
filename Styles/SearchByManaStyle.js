@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
       paddingLeft: 20,
       paddingRight: 20,
       marginTop: Platform.OS === 'ios' ? 50 : '',
+      marginBottom: Platform.OS === 'ios' ? 30 : ''
    },
    manaCostText:{
       fontSize: 18,

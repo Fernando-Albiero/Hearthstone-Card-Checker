@@ -1,10 +1,13 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-   buttons:{
+   prevNextButtons:{
       color: 'black',
       fontSize: 60
    },
+   dots:{
+      
+   }
 });
 
 export default styles;

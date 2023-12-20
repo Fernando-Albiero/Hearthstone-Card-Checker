@@ -89,13 +89,14 @@ export default function SearchByName({navigation}) {
                      request ? (
                         <Text style={ styles.information }>Tap on card for <Text style={{ fontWeight: 'bold'}}>more</Text> information!</Text>
                      ) : <></>
-                  }
+                  }   
                </View>
             )
          }
          <KeyboardAvoidingView 
             style={ styles.bottomContainer }
             behavior={Platform.OS === 'ios' ? 'padding' : ''}>
+
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                <TextInput
                   style={ styles.input }
@@ -118,7 +119,7 @@ export default function SearchByName({navigation}) {
             transparent={ true }>
 
             <View 
-               style={{ width: 300, backgroundColor: 'white', borderRadius: 20, borderWidth: 2, padding: 10, alignSelf: 'center', marginTop: 100 }}>
+               style={ styles.modal }>
                <TouchableOpacity 
                   style={{ alignSelf: 'flex-end', marginBottom: 10 }}
                   onPress={ () => setIsModalVisible(false) }>

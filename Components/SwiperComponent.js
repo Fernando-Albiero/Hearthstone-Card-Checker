@@ -12,11 +12,11 @@ export default function SwiperComponent({navigation}) {
          showsButtons={true}
          index={0}
          loop={false}
-         dotStyle={{marginBottom: 15}}
-         activeDotStyle={{marginBottom: 15}}
+         dotStyle={ styles.dots }
+         activeDotStyle={ styles.dots }
          activeDotColor='#614326'
-         prevButton={ <Text style={ styles.buttons}>‹</Text> }
-         nextButton={ <Text style={ styles.buttons}>›</Text> }>
+         prevButton={ <Text style={ styles.prevNextButtons}>‹</Text> }
+         nextButton={ <Text style={ styles.prevNextButtons}>›</Text> }>
 
          <View style={{ flex: 1}}>
             <SearchByName navigation={navigation}/>

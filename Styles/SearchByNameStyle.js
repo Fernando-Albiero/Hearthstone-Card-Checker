@@ -1,10 +1,11 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
    container:{
       flex: 1,
       alignItems: 'center',
-      marginTop: Platform.OS === 'ios' ? 50 : ''
+      marginTop: Platform.OS === 'ios' ? 50 : '',
+      marginBottom: Platform.OS === 'ios' ? 30 : ''
    },
    cardConteiner:{
       flex: 9,
@@ -12,15 +13,15 @@ const styles = StyleSheet.create({
       alignItems: 'center',
    },
    cardImage:{
-      width: 300, 
-      height: 300,
+      width: 400, 
+      height: 400,
       resizeMode: 'contain',
    },
    information:{
       fontSize: 12,
    },
    bottomContainer:{
-      flex: 3.5,
+      flex: 4,
       alignItems: 'center',
       width: '100%',
    },
@@ -48,6 +49,14 @@ const styles = StyleSheet.create({
       color: 'white',
       fontSize: 16,
       fontFamily: 'IBMPlexMono-Bold'
+   },
+   modal:{
+      width: 300, 
+      backgroundColor: 'white', 
+      borderRadius: 20, 
+      borderWidth: 2, 
+      padding: 10, 
+      alignSelf: 'center', 
    }
 })
 

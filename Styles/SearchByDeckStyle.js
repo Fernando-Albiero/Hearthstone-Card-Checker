@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
       flex: 1,
       paddingTop: 50,
       marginTop: Platform.OS === 'ios' ? 50 : '',
+      marginBottom: Platform.OS === 'ios' ? 30 : ''
    },
    deckName:{
       fontSize: 18,
@@ -31,12 +32,14 @@ const styles = StyleSheet.create({
    },
    list:{
       marginTop: 10,
-      marginBottom: 60,
+      marginBottom: 80,
       width: '100%',
+      backgroundColor: 'purple'
    },
    cardConteiner:{
       alignItems: 'center',
-      marginBottom: 10
+      marginBottom: 10,
+      backgroundColor: 'yellow'
    },
    cardImage:{
       width: 300,
