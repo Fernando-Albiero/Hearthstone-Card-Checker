@@ -87,7 +87,9 @@ export default function SearchByMana({navigation}) {
 
   const handleCards = (item) => {
       return (
-         <TouchableOpacity style={styles.cardConteiner} onPress={() => navigation.navigate('CardInformation', {cardName: item.name})}>
+         <TouchableOpacity 
+            style={styles.cardConteiner} 
+            onPress={ () => navigation.navigate('CardInformation', {cardName: item.name})  }>
             <Image
                style={ styles.cardImage }
                source={{ uri: item.img }}
@@ -98,7 +100,7 @@ export default function SearchByMana({navigation}) {
 
    return (
       <View style={ styles.container }>
-         <Text style={ styles.manaCostText }>Mana Cost</Text>
+         <Text style={ styles.manaCostText }>Search by Mana Cost</Text>
          <FlatList
             style={ styles.costsList }
             columnWrapperStyle={ styles.costWrapper }

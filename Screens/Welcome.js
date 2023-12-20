@@ -19,7 +19,7 @@ export default function Welcome({navigation}) {
             >https://hearthstoneapi.com/</Text>
          </Text>
          
-         <TouchableHighlight style={ styles.button } onPress={ () => navigation.navigate('BottomNavigator') }>
+         <TouchableHighlight style={ styles.button } onPress={ () => navigation.navigate('Swiper') }>
             <Text style={ styles.buttonText }>Start</Text>
          </TouchableHighlight>
          <Text style={ styles.credits }>

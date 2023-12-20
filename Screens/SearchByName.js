@@ -60,7 +60,7 @@ export default function SearchByName({navigation}) {
       Keyboard.dismiss();
 
       if(request){
-         navigation.navigate('CardInformation', {cardName: card.name});
+         navigation.navigate('CardInformation', {cardName: cardName});
       }
    }
 

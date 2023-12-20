@@ -1,17 +1,44 @@
 import React from 'react';
-import { Image } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Welcome from './Screens/Welcome';
-import SearchByName from './Screens/SearchByName';
 import CardInformation from './Screens/CardInformation';
-import SearchByDeck from './Screens/SearchByDeck';
-import SearchByMana from './Screens/SearchByMana';
+import SwiperComponent from './Components/SwiperComponent';
 
 const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
+//const Tab = createBottomTabNavigator();
 
+export default function Routes() {
+   return (
+      <NavigationContainer>
+         <Stack.Navigator>
+            <Stack.Screen
+               options={{
+                  headerShown: false
+               }}
+               name='Welcome' 
+               component={ Welcome }
+            />
+            <Stack.Screen
+               options={{
+                  headerShown: false
+               }}
+               name='Swiper' 
+               component={ SwiperComponent }
+            />
+            <Stack.Screen
+               options={{
+                  headerShown: false
+               }}
+               name='CardInformation' 
+               component={ CardInformation }
+            />
+         </Stack.Navigator>
+      </NavigationContainer>
+   );
+}
+
+/*
 function BottomNavigator(){
    return (
       <Tab.Navigator 
@@ -39,7 +66,7 @@ function BottomNavigator(){
                   />
                }}
                name="By Name"
-               component={SearchByName}
+               component={ SearchByName }
          />
          <Tab.Screen 
             options={{
@@ -52,7 +79,7 @@ function BottomNavigator(){
                   />
                }}
                name="By Deck"
-               component={SearchByDeck}
+               component={ SearchByDeck }
          />
          <Tab.Screen 
             options={{
@@ -64,7 +91,7 @@ function BottomNavigator(){
                   />
                }}
                name="By Mana"
-               component={SearchByMana}
+               component={ SearchByMana }
          />
          <Tab.Screen
             options={{
@@ -75,31 +102,9 @@ function BottomNavigator(){
                tabBarButton: () => null
             }}
             name='CardInformation'
-            component={CardInformation}
+            component={ CardInformation }
          />
       </Tab.Navigator>
    );
 }
-
-export default function Routes() {
-   return (
-      <NavigationContainer>
-         <Stack.Navigator
-         screenOptions={{ autoHideHomeIndicator: true }}>
-            <Stack.Screen
-               options={{
-                  headerShown: false
-               }}
-               name='Welcome' 
-               component={Welcome}
-            />
-            <Stack.Screen
-               options={{
-                  headerShown: false
-               }}
-               name='BottomNavigator' 
-               component={BottomNavigator}/>
-         </Stack.Navigator>
-      </NavigationContainer>
-   );
-}
+*/

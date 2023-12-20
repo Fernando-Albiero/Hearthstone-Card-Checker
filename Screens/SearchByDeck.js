@@ -58,7 +58,7 @@ export default function SearchByDeck({navigation}) {
          style={ styles.container }
          imageStyle= {{ resizeMode: 'stretch' }}
          source={ require('../assets/background.png')}>
-         <Text style={ styles.deckName }>Deck Name</Text>
+         <Text style={ styles.deckName }>Search by Deck Name</Text>
          <SelectList
             boxStyles={ styles.selectList }
             dropdownStyles={ styles.dropdownMenu }
