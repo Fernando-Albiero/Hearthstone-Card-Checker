@@ -26,27 +26,6 @@ export default function SearchByMana({navigation}) {
       { id: 10, uri: [require("../assets/10Unselected.png"), require("../assets/10Selected.png")]}
   ];
 
-   const handleCosts = (item) => {
-      var image = selected == item.id ? item.uri[1] : item.uri[0];
-
-      //desabilitar todos os botões quando um foi selecionado.
-      return (
-         <TouchableOpacity
-            style={{ marginRight: 20}}
-            disabled={ disabled }
-            onPress={ () => {
-               setSelected(item.id);
-               handleSearch(item);
-            }}
-         >
-            <Image
-               source={image}
-               style={ styles.costImage}
-            />
-        </TouchableOpacity>
-      );
-   };
-
    //implementar 10+ costs.
    const handleSearch = async (item) => {
       setDisabled(true);
@@ -98,16 +77,33 @@ export default function SearchByMana({navigation}) {
       );
    };
 
+   const handleCosts = (item) => {
+      var image = selected == item.id ? item.uri[1] : item.uri[0];
+
+      //desabilitar todos os botões quando um foi selecionado.
+      return (
+         <TouchableOpacity
+            key={ item.id }
+            style={{ marginRight: 5}}
+            disabled={ disabled }
+            onPress={ () => {
+               setSelected(item.id);
+               handleSearch(item);
+            }}>
+            <Image
+               source={ image }
+               style={ styles.costImage }
+            />
+         </TouchableOpacity>
+      );
+   };
+
    return (
       <View style={ styles.container }>
-         <Text style={ styles.manaCostText }>Search by Mana Cost</Text>
-         <FlatList
-            style={ styles.costsList }
-            columnWrapperStyle={ styles.costWrapper }
-            numColumns={ 6 }
-            data={ costs }
-            renderItem={ ({ item }) => handleCosts(item) }
-         />
+         <Text style={ styles.manaCostText }>Search by Mana</Text>
+         <View style={ styles.costsList }>
+            {  costs.map((item) => handleCosts(item)) }
+         </View>
          {
             loading ? (
                <View style={styles.loading}>
