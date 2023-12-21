@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { View, Text, Image, ActivityIndicator, ImageBackground, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, Image, ActivityIndicator, TouchableOpacity, ScrollView } from 'react-native';
 import axios from 'axios';
 import styles from '../Styles/CardInformationStyle';
 import { options } from '../RequestOptionsAndDecks';

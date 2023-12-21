@@ -4,7 +4,6 @@ import { AntDesign } from '@expo/vector-icons';
 import axios from 'axios';
 import styles from '../Styles/SearchByNameStyle';
 import { options } from '../RequestOptionsAndDecks';
-import { BlurView } from 'expo-blur';
 
 export default function SearchByName({navigation}) {
    const [cardName, setCardName] = useState('');

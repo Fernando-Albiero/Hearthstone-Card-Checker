@@ -1,4 +1,4 @@
-import { ActivityIndicator, FlatList, Image, ImageBackground, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
 import { SelectList } from 'react-native-dropdown-select-list';
 import { useState } from 'react';
 import axios from 'axios';
