@@ -54,11 +54,9 @@ export default function SearchByDeck({navigation}) {
    }
 
    return (
-      <ImageBackground 
-         style={ styles.container }
-         imageStyle= {{ resizeMode: 'stretch' }}
-         source={ require('../assets/background.png')}>
-         <Text style={ styles.deckName }>Search by Deck Name</Text>
+      <View 
+         style={ styles.container }>
+         <Text style={ styles.deckName }>Search by Deck</Text>
          <SelectList
             boxStyles={ styles.selectList }
             dropdownStyles={ styles.dropdownMenu }
@@ -81,6 +79,6 @@ export default function SearchByDeck({navigation}) {
                   renderItem={ ({item}) => showCards(item) }
                />
          }
-      </ImageBackground>
+      </View>
    )
 }

@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { verticalScale } from './Metrics';
 
 const styles = StyleSheet.create({
    prevNextButtons:{
@@ -6,7 +7,7 @@ const styles = StyleSheet.create({
       fontSize: 60
    },
    dots:{
-      
+      marginBottom: Platform.OS === 'ios' ? verticalScale(30) : '',
    }
 });
 

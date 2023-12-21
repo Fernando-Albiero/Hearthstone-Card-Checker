@@ -14,7 +14,7 @@ export default function SwiperComponent({navigation}) {
          loop={false}
          dotStyle={ styles.dots }
          activeDotStyle={ styles.dots }
-         activeDotColor='#614326'
+         activeDotColor='black'
          prevButton={ <Text style={ styles.prevNextButtons}>‹</Text> }
          nextButton={ <Text style={ styles.prevNextButtons}>›</Text> }>
 

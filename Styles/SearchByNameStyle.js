@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       width: '100%',
-      backgroundColor: 'purple',
       paddingBottom: verticalScale(50)
    },
    inputRow:{
