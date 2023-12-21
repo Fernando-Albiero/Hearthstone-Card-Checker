@@ -128,7 +128,7 @@ export default function SearchByName({navigation}) {
             
             <TouchableWithoutFeedback  onPress={ handleModal }>
                <View style={{ flex: 1, width: '100%', height: '100%'}}>
-                  <Touchable WithoutFeedback>
+                  <TouchableWithoutFeedback>
                      <View
                         style={ styles.modal }>
                         <TouchableOpacity 
@@ -148,7 +148,7 @@ export default function SearchByName({navigation}) {
                               - Ysera{'\n'}
                         </Text>
                      </View>
-                  </Touchable>
+                  </TouchableWithoutFeedback>
                </View>
             </TouchableWithoutFeedback>
          </Modal>

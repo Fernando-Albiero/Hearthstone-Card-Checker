@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
    },
    cardConteiner:{
       width: '100%',
-      height: '75%',
+      height: '70%',
       justifyContent: 'center',
       alignItems: 'center',
    },
@@ -23,10 +23,12 @@ const styles = StyleSheet.create({
       fontSize: moderateScale(12),
    },
    bottomContainer:{
-      height: '25%',
+      height: '30%',
       justifyContent: 'center',
       alignItems: 'center',
       width: '100%',
+      backgroundColor: 'purple',
+      paddingBottom: verticalScale(50)
    },
    inputRow:{
       flexDirection: 'row', 
