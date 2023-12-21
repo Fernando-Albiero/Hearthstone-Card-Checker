@@ -4,18 +4,22 @@ import { AntDesign } from '@expo/vector-icons';
 import axios from 'axios';
 import styles from '../Styles/SearchByNameStyle';
 import { options } from '../RequestOptionsAndDecks';
+import CustomModal from '../Components/CustomModal';
 
 export default function SearchByName({navigation}) {
    const [cardName, setCardName] = useState('');
    const [cardImage, setCardImage] = useState(require('../assets/cardBack2.png'));
    const [card, setCard] = useState({});
    const [loading, setLoading] = useState(false);
-   const [isModalVisible, setIsModalVisible] = useState(false);
+   const [showModal1, setShowModal1] = useState(false);
+   const [showModal2, setShowModal2] = useState(false);
+   const [showModal3, setShowModal3] = useState(false);
    const [opacity, setOpacity] = useState(1);
    const [request, setRequest] = useState(false);
    
    //Function to handle with searches.
    const requestAPI = async () => {
+      var modalResponse = 0;
       //Start loading.
       Keyboard.dismiss();
       setLoading(true);
@@ -41,19 +45,23 @@ export default function SearchByName({navigation}) {
                }
             }
             else{
-               alert('Card not find!\n\nDid you type the card name correctly?');
+               //alert('Card not find!\n\nDid you type the card name correctly?');
+               modalResponse = 2;
             }
          }
          catch(error){
-            alert('Card not find!\n\nDid you type the card name correctly?');
+            modalResponse = 2;
+            //alert('Card not find!\n\nDid you type the card name correctly?');
          }
       } 
       else{
-         alert('Please, type a card name!');
+         //alert('Please, type a card name!');
+         modalResponse = 3;
       }
 
       //Stop loading.
       setLoading(false);
+      return modalResponse;
    }
 
    //Function to handle with click on card.
@@ -65,12 +73,38 @@ export default function SearchByName({navigation}) {
       }
    }
 
-   const handleModal = () => {
+   /*const handleModal = () => {
       setIsModalVisible(!isModalVisible)
       if(opacity == 1)
          setOpacity(0.5)
       else
          setOpacity(1);
+   }*/
+
+   function handleModal(modalId){
+      switch(modalId){
+         case 1:
+            setShowModal1(!showModal1);
+            break;
+         case 2:
+            setShowModal2(!showModal2);
+            break;
+         case 3:
+            setShowModal3(!showModal3);
+            break;
+         default:
+            setShowModal1(false);
+            setShowModal2(false);
+            setShowModal3(false);
+            break;
+      }
+
+      if(opacity == 1){
+         setOpacity(0.5);
+      }
+      else{
+         setOpacity(1);
+      }
    }
 
    return (
@@ -103,22 +137,53 @@ export default function SearchByName({navigation}) {
          <KeyboardAvoidingView 
             style={ styles.bottomContainer }
             behavior={'height'}>
-
             <View style={ styles.inputRow }>
                <TextInput
                   style={ styles.input }
                   onChangeText={ (name) => setCardName(name.toLowerCase()) }
                   placeholder='Type a card name...'
                />
-               <TouchableHighlight onPress={ handleModal } underlayColor='none'>
+               <TouchableHighlight onPress={ () => handleModal(1) } underlayColor='none'>
                   <AntDesign name="questioncircle" size={ 40 } color="black" style={{marginLeft: 5}} />
                </TouchableHighlight>
             </View>
-            <TouchableHighlight style={ styles.button } onPress={ requestAPI }>
+            <TouchableHighlight 
+               style={ styles.button } 
+               onPress={
+                  () =>{
+                     requestAPI().then((modalId) => handleModal(modalId));
+               }}>
                <Text style={ styles.buttonText }>Search</Text>
             </TouchableHighlight>
          </KeyboardAvoidingView>
-         <Modal
+         {
+            showModal1 ? (
+               <CustomModal 
+                  showModal={ showModal1 }
+                  handleModal={ () => handleModal(1) }
+                  title='Dont you know any card?'
+                  text={`\n\nTry some of these names:\n- Archmage Antonidas\n- Cage Head\n- DJ Manastorm\n- Frost Strike\n- The Jailer\n- Ysera\n`}
+               />
+               ) :
+            showModal2 ? (
+               <CustomModal 
+                  showModal={ showModal2 }
+                  handleModal={ () => handleModal(2) }
+                  title='Ops!'
+                  text={`\n\nCard not find!\n\nDid you type the card name correctly?`}
+               />
+               ) :
+            showModal3 ? (
+               <CustomModal 
+                  showModal={ showModal3 }
+                  handleModal={ () => handleModal(3) }
+                  title='Ops!'
+                  text={`\n\nPlease, type a card name!`}
+               />
+            ) :
+               <></>
+         }
+         {/*<Modal
             visible={ isModalVisible }
             dismiss= { () => setIsModalVisible(false) }
             animationType='fade'
@@ -150,7 +215,7 @@ export default function SearchByName({navigation}) {
                   </TouchableWithoutFeedback>
                </View>
             </TouchableWithoutFeedback>
-         </Modal>
+      </Modal>*/}
       </View>
    );
 }
