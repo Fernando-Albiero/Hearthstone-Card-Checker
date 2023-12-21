@@ -1,9 +1,10 @@
-import { ActivityIndicator, Image, ImageBackground, Keyboard, KeyboardAvoidingView, Modal, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Image, Keyboard, KeyboardAvoidingView, Modal, Text, TextInput, TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
 import { useState } from 'react';
 import { AntDesign } from '@expo/vector-icons'; 
 import axios from 'axios';
 import styles from '../Styles/SearchByNameStyle';
 import { options } from '../RequestOptionsAndDecks';
+import { BlurView } from 'expo-blur';
 
 export default function SearchByName({navigation}) {
    const [cardName, setCardName] = useState('');
@@ -11,6 +12,7 @@ export default function SearchByName({navigation}) {
    const [card, setCard] = useState({});
    const [loading, setLoading] = useState(false);
    const [isModalVisible, setIsModalVisible] = useState(false);
+   const [opacity, setOpacity] = useState(1);
    const [request, setRequest] = useState(false);
    
    //Function to handle with searches.
@@ -64,11 +66,17 @@ export default function SearchByName({navigation}) {
       }
    }
 
+   const handleModal = () => {
+      setIsModalVisible(!isModalVisible)
+      if(opacity == 1)
+         setOpacity(0.5)
+      else
+         setOpacity(1);
+   }
+
    return (
-      <ImageBackground 
-         style={ styles.container }
-         imageStyle= {{ resizeMode: 'stretch' }}
-         source={ require('../assets/background.png')}>
+      <View 
+         style={ [styles.container, {opacity: opacity}] }>
          {
             loading ? (
                <View style={ styles.cardConteiner }>
@@ -95,16 +103,16 @@ export default function SearchByName({navigation}) {
          }
          <KeyboardAvoidingView 
             style={ styles.bottomContainer }
-            behavior={Platform.OS === 'ios' ? 'padding' : ''}>
+            behavior={'height'}>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <View style={ styles.inputRow }>
                <TextInput
                   style={ styles.input }
                   onChangeText={ (name) => setCardName(name.toLowerCase()) }
                   placeholder='Type a card name...'
                />
-               <TouchableHighlight onPress={ () => setIsModalVisible(!isModalVisible) } underlayColor='none'>
-                  <AntDesign name="questioncircle" size={ 36 } color="black" style={{marginLeft: 5}} />
+               <TouchableHighlight onPress={ handleModal } underlayColor='none'>
+                  <AntDesign name="questioncircle" size={ 40 } color="black" style={{marginLeft: 5}} />
                </TouchableHighlight>
             </View>
             <TouchableHighlight style={ styles.button } onPress={ requestAPI }>
@@ -113,31 +121,37 @@ export default function SearchByName({navigation}) {
          </KeyboardAvoidingView>
          <Modal
             visible={ isModalVisible }
+            dismiss= { () => setIsModalVisible(false) }
             animationType='fade'
             statusBarTranslucent={ false }
-            onRequestClose={ () => setIsModalVisible(false) }
             transparent={ true }>
-
-            <View 
-               style={ styles.modal }>
-               <TouchableOpacity 
-                  style={{ alignSelf: 'flex-end', marginBottom: 10 }}
-                  onPress={ () => setIsModalVisible(false) }>
-                  <AntDesign name="closecircleo" size={24} color="black" />
-               </TouchableOpacity>
             
-               <Text style={{ fontFamily: 'IBMPlexMono' }}>
-                  <Text style={{ fontSize: 16, fontFamily: 'IBMPlexMono-Bold'}}>Dont you know any card?{'\n\n'}</Text>
-                     Try some of these names:{'\n\n'}
-                     - Archmage Antonidas{'\n'}
-                     - Cage Head{'\n'}
-                     - DJ Manastorm{'\n'}
-                     - Frost Strike{'\n'}
-                     - The Jailer{'\n'}
-                     - Ysera{'\n'}
-                  </Text>
-            </View>
+            <TouchableWithoutFeedback  onPress={ handleModal }>
+               <View style={{ flex: 1, width: '100%', height: '100%'}}>
+                  <Touchable WithoutFeedback>
+                     <View
+                        style={ styles.modal }>
+                        <TouchableOpacity 
+                           style={{ alignSelf: 'flex-end', marginBottom: 10 }}
+                           onPress={ handleModal }>
+                           <AntDesign name="closecircleo" size={24} color="black" />
+                        </TouchableOpacity>
+                     
+                        <Text style={{ fontFamily: 'IBMPlexMono' }}>
+                           <Text style={{ fontSize: 16, fontFamily: 'IBMPlexMono-Bold'}}>Dont you know any card?{'\n\n'}</Text>
+                              Try some of these names:{'\n\n'}
+                              - Archmage Antonidas{'\n'}
+                              - Cage Head{'\n'}
+                              - DJ Manastorm{'\n'}
+                              - Frost Strike{'\n'}
+                              - The Jailer{'\n'}
+                              - Ysera{'\n'}
+                        </Text>
+                     </View>
+                  </Touchable>
+               </View>
+            </TouchableWithoutFeedback>
          </Modal>
-      </ImageBackground>
+      </View>
    );
 }
