@@ -3,12 +3,13 @@ import { StyleSheet } from 'react-native'
 const styles = StyleSheet.create({
    container:{
       flex: 1,
+      justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#fff'
+      backgroundColor: '#fff',
+      
    },
    welcome:{
       fontSize: 20,
-      marginTop: 50,
       fontFamily: 'IBMPlexMono'
    },
    title:{
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
    },
    buttonText:{
       color: 'white',
-      fontWeight: 'bold',
+      fontFamily: 'IBMPlexMono-Bold',
       fontSize: 16
    },
    credits:{

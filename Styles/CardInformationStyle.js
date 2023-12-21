@@ -1,56 +1,73 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
+import { horizontalScale, verticalScale, moderateScale } from './Metrics';
 
 const styles = StyleSheet.create({
    container:{
       flex: 1,
+      marginTop: Platform.OS === 'ios' ? verticalScale(50) : '',
+      marginBottom: Platform.OS === 'ios' ? verticalScale(30) : '',
    },
    loading:{
       flex: 1,
       justifyContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
    },
-   inner:{
-      flex: 1
+   innerContainer:{
+      flex:1,
+   },
+   scroll:{ 
+      paddingTop: verticalScale(50),
    },
    cardName:{
-      fontSize: 36,
+      fontSize: moderateScale(40),
       fontFamily: 'BelweBoldBT',
-      marginTop: 30,
-      marginLeft: 20
+      marginLeft: horizontalScale(30),
+      marginRight: horizontalScale(30),
+      marginBottom: verticalScale(20)
    },
    cardFlavor:{
-      fontSize: 16,
+      fontSize: moderateScale(20),
       color: 'gray',
       fontFamily: 'Inter',
       fontStyle: 'italic',
-      marginLeft: 20,
-      marginRight: 20,
-      marginBottom: 10
+      marginLeft: horizontalScale(30),
+      marginRight: horizontalScale(30),
+      marginBottom: verticalScale(20)
    },
    cardText:{
-      fontSize: 14,
+      fontSize: moderateScale(16),
       fontFamily: 'Inter',
-      marginLeft: 20,
-      marginRight: 20,
-      marginBottom: 20
+      marginLeft: horizontalScale(30),
+      marginRight: horizontalScale(30),
+      marginBottom: verticalScale(20)
    },
    titles:{
-      fontSize: 14,
+      fontSize: moderateScale(16),
       fontFamily: 'Inter-Bold',
-      fontWeight: 'bold',
-      marginLeft: 20,
-      marginBottom: 5
+      marginLeft: horizontalScale(30),
+      marginBottom: verticalScale(10)
    },
    information:{
-      fontSize: 12,
+      fontSize: moderateScale(14),
       fontFamily: 'Inter',
-      marginBottom: 5
+      marginBottom: verticalScale(10),
    },
    imageConteiner:{
-      width: '100%',
-      height: '50%',
       justifyContent: 'center',
       alignItems: 'center',
+      paddingTop: verticalScale(20),
+      marginBottom: verticalScale(100)
+   },
+   cardImage:{
+      width: horizontalScale(300),
+      height: verticalScale(300),
+      resizeMode:"contain", 
+   },
+   back:{
+      fontSize: moderateScale(12),
+      marginTop: verticalScale(10),
+      marginBottom: verticalScale(40),
+      alignSelf: 'center'
    }
 })
 

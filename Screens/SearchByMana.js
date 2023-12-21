@@ -1,21 +1,18 @@
 import { ActivityIndicator, FlatList, Image, Text, TouchableOpacity, View, } from "react-native";
 import { useState } from "react";
-import { useFonts } from "expo-font";
 import axios from "axios";
 import styles from "../Styles/SearchByManaStyle";
+import { options } from "../RequestOptionsAndDecks";
 
-let customFonts = {
-  'IBMPlexMono': require("../assets/fonts/IBMPlexMono-Regular.ttf"),
-  'IBMPlexMono-Bold': require("../assets/fonts/IBMPlexMono-Bold.ttf"),
-};
+var opt = JSON.parse(JSON.stringify(options));
 
-export default function SearchByMana() {
-   const [loading, setLoading] = useState(false);
-   const [isFontLoaded] = useFonts(customFonts);
+export default function SearchByMana({navigation}) {
+   const [cards, setCards] = useState([]);
    const [selected, setSelected] = useState(undefined);
-   const [cardsUri, setCardsUri] = useState([]);
-
-  const costs = [
+   const [disabled, setDisabled] = useState(false);
+   const [loading, setLoading] = useState(false);
+   
+   const costs = [
       { id: 0, uri: [require("../assets/0Unselected.png"), require("../assets/0Selected.png")]},
       { id: 1, uri: [require("../assets/1Unselected.png"), require("../assets/1Selected.png")]},
       { id: 2, uri: [require("../assets/2Unselected.png"), require("../assets/2Selected.png")]},
@@ -29,112 +26,99 @@ export default function SearchByMana() {
       { id: 10, uri: [require("../assets/10Unselected.png"), require("../assets/10Selected.png")]}
   ];
 
-  const handleCosts = (item) => {
-    var image = selected == item.id ? item.uri[1] : item.uri[0];
+   //implementar 10+ costs.
+   const handleSearch = async (item) => {
+      setDisabled(true);
+      setLoading(true);
 
-    if (item.id == 10) {
-      return (
-        <TouchableOpacity
-          onPress={() => {
-            setSelected(item.id);
-            handleSearch(item);
-          }}
-        >
-          <Image source={image} style={styles.costs}></Image>
-        </TouchableOpacity>
-      );
-    } else {
-      return (
-        <TouchableOpacity
-          onPress={() => {
-            setSelected(item.id);
-            handleSearch(item);
-          }}
-        >
-          <Image
-            source={image}
-            style={{ width: 30, height: 30, resizeMode: "contain" }}
-          ></Image>
-        </TouchableOpacity>
-      );
-    }
-  };
+      opt.params.cost = item.id;
+    
 
-  const handleSearch = async (item) => {
-    setLoading(true);
+      try {
+         //Do the request to hearthstone API.
+         const response = await axios.request('https://omgvamp-hearthstone-v1.p.rapidapi.com/cards', opt);
+         const data = response.data;
 
-    const options = {
-      method: "GET",
-      params: {
-        cost: item.id,
-        collectible: "1",
-      },
-      headers: {
-        "X-RapidAPI-Key": "81935cf82dmsh5cbfb766a872ce7p16553cjsnec4be953734c",
-        "X-RapidAPI-Host": "omgvamp-hearthstone-v1.p.rapidapi.com",
-      },
-    };
+         var cards = [];
 
-    try {
-      //Do the request to hearthstone API.
-      const response = await axios.request(
-        "https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/classes/Death%20Knight",
-        options
-      );
-      const data = response.data;
+         //Get each deck in data.
+         for (let deck in data) {
+            //Extract deck information
+            var array = data[deck];
+         
+            //Extract images from deck cards.
+            for(let i=0; i<array.length; i++){
+               if(array[i].hasOwnProperty("img")){
+               cards.push(array[i]);
+               }
+            }
+         }
 
-      var imagesUri = [];
+         setCards(cards);
 
-      //Extract all images found.
-      for (let i = 0; i < data.length; i++) {
-        if (data[i].hasOwnProperty("img")) {
-          imagesUri.push(data[i].img);
-        }
-      }
+      } catch (error) {
+         alert(error);
+      };
 
-      setCardsUri(imagesUri);
-    } catch (error) {
-      alert(error);
-    }
-
-    setLoading(false);
-  };
+      setLoading(false);
+      setDisabled(false);
+   }
 
   const handleCards = (item) => {
-    return (
-      <TouchableOpacity style={styles.cardConteiner} onPress={() => {}}>
-        <Image
-          style={{ width: 250, height: 250, resizeMode: "contain" }}
-          source={{ uri: item }}
-        />
-      </TouchableOpacity>
-    );
-  };
-
-  if (isFontLoaded) {
       return (
-         <View style={styles.container}>
-            <Text style={styles.manaCostText}>Mana Cost</Text>
-            <FlatList
-               style={styles.costsList}
-               horizontal={true}
-               data={costs}
-               renderItem={({ item }) => handleCosts(item)}
+         <TouchableOpacity 
+            style={styles.cardConteiner} 
+            onPress={ () => navigation.navigate('CardInformation', {cardName: item.name})  }>
+            <Image
+               style={ styles.cardImage }
+               source={{ uri: item.img }}
             />
-            {
-               loading ? (
-                  <View style={styles.loading}>
-                     <ActivityIndicator size={40} color="black"></ActivityIndicator>
-                  </View>
-               ) : (
-                  <FlatList
-                     style={styles.cardList}
-                     data={cardsUri}
-                     renderItem={({ item }) => handleCards(item)}
-                  />
-               )
-            }
-         </View>
+         </TouchableOpacity>
       );
-   }
+   };
+
+   const handleCosts = (item) => {
+      var image = selected == item.id ? item.uri[1] : item.uri[0];
+
+      //desabilitar todos os botões quando um foi selecionado.
+      return (
+         <TouchableOpacity
+            key={ item.id }
+            style={{ marginRight: 5}}
+            disabled={ disabled }
+            onPress={ () => {
+               setSelected(item.id);
+               handleSearch(item);
+            }}>
+            <Image
+               source={ image }
+               style={ styles.costImage }
+            />
+         </TouchableOpacity>
+      );
+   };
+
+   return (
+      <View style={ styles.container }>
+         <Text style={ styles.manaCostText }>Search by Mana</Text>
+         <View style={ styles.costsList }>
+            {  costs.map((item) => handleCosts(item)) }
+         </View>
+         {
+            loading ? (
+               <View style={styles.loading}>
+                  <Text style={ styles.loadingMessage}>This operation can take a while because there are many cards to process.</Text>
+                  <Text style={ styles.loadingSubMessage}>Please wait a moment!</Text>
+                  <ActivityIndicator size={40} color="black"></ActivityIndicator>
+               </View>
+            ) : (
+               <FlatList
+                  style={styles.cardList}
+                  data={cards}
+                  renderItem={({ item }) => handleCards(item) }
+               />
+            )
+         }
+      </View>
+   );
 }

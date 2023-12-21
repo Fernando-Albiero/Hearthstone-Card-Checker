@@ -1,45 +1,57 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
+import { horizontalScale, verticalScale, moderateScale } from './Metrics';
+
 
 const styles = StyleSheet.create({
    container:{
       flex: 1,
-      paddingLeft: 20,
-      paddingRight: 20,
-      paddingTop: 30,
+      paddingTop: verticalScale(50),
+      marginTop: Platform.OS === 'ios' ? verticalScale(50) : '',
+      marginBottom: Platform.OS === 'ios' ? verticalScale(30) : ''
    },
    deckName:{
-      fontSize: 18,
-      fontFamily: 'IBMPlexMono',
-      fontWeight: 'bold',
-      marginBottom: 10
+      fontSize: moderateScale(22),
+      fontFamily: 'IBMPlexMono-Bold',
+      marginBottom: verticalScale(30),
+      marginLeft: horizontalScale(50)
+   },
+   selectList:{
+      borderWidth: 2, 
+      borderColor: 'black', 
+      alignSelf: 'center', 
+      width: '80%', 
+      marginLeft: horizontalScale(20),
+      marginRight: horizontalScale(20)
    },
    dropdownMenu:{
       backgroundColor: "white",
-      position: "absolute",
-      top: 40,
-      width: "100%",
+      width: "80%",
+      top: -10,
+      alignSelf: 'center',
       zIndex: 999,
+      borderColor: 'black',
+      borderWidth: 2
    },
    list:{
-      marginTop: 10,
-      marginBottom: 10,
-      width: '100%'
+      marginTop: verticalScale(10),
+      marginBottom: verticalScale(80),
+      width: '100%',
    },
    cardConteiner:{
       alignItems: 'center',
-      marginBottom: 10
+      marginBottom: verticalScale(10),
    },
-   image:{
-      width: 300,
-      height: 300,
+   cardImage:{
+      width: horizontalScale(400),
+      height: verticalScale(400),
       resizeMode: 'contain'
    },
    loading:{
       justifyContent: 'center',
       alignItems: 'center',
       width: '100%',
-      height: '80%',
-      marginTop: 10,
+      height: '70%',
+      marginTop: verticalScale(10),
    }
 });
 

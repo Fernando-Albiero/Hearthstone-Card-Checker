@@ -1,44 +1,69 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
+import { horizontalScale, verticalScale, moderateScale } from './Metrics';
 
 const styles = StyleSheet.create({
    container:{
       flex: 1,
       alignItems: 'center',
-      paddingTop: 30,
-      paddingLeft: 20,
-      paddingRight: 20
+      paddingTop: verticalScale(50),
+      paddingLeft: horizontalScale(20),
+      paddingRight: horizontalScale(20),
+      marginTop: Platform.OS === 'ios' ? verticalScale(50) : '',
+      marginBottom: Platform.OS === 'ios' ? verticalScale(30) : ''
    },
    manaCostText:{
-      fontSize: 18,
-      fontFamily: 'IBMPlexMono',
-      fontWeight: 'bold',
-      marginBottom: 10,
+      fontSize: moderateScale(22),
+      fontFamily: 'IBMPlexMono-Bold',
+      marginBottom: verticalScale(30),
+      marginLeft: horizontalScale(10),
       alignSelf: "flex-start"
    },
    costsList:{
-      height: '6%',
-      flexGrow: 0,
-      marginBottom: 10,
+      width: '100%',
+      flexDirection: 'row', 
+      flexWrap: 'wrap', 
+      justifyContent: 'center',
+      alignContent: 'center',
+      paddingBottom: verticalScale(5), 
+      paddingTop: verticalScale(5),
+      marginBottom: verticalScale(30) 
    },
-   costs:{
-      width: 25, 
-      height: 25, 
+   costImage:{
+      width: horizontalScale(50), 
+      height: verticalScale(50), 
       resizeMode: 'contain'
    },
    loading:{
-      width: '100%', 
-      height: '85%', 
+      height: '50%',
+      width: '90%', 
       justifyContent:'center', 
       alignItems: 'center',
    },
+   loadingMessage:{
+      fontSize: moderateScale(18),
+      fontFamily: 'IBMPlexMono',
+      marginBottom: verticalScale(10),
+   },
+   loadingSubMessage:{
+      textAlign: 'center', 
+      fontSize: moderateScale(25),
+      fontFamily: 'IBMPlexMono-Bold',
+      marginTop: verticalScale(40),
+      marginBottom: verticalScale(40)
+   },
    cardList:{
-      width: '100%',
-      height: '85%', 
-      marginBottom: 10,
+      width: '90%',
+      height: '80%', 
+      marginBottom: verticalScale(80),
    },
    cardConteiner:{
       alignItems: 'center',
-   }
+   },
+   cardImage:{
+      width: horizontalScale(400), 
+      height: verticalScale(400), 
+      resizeMode: "contain"
+   },
 })
 
 export default styles;
