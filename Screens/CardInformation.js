@@ -48,19 +48,12 @@ export default function CardInformation({navigation, route}) {
    //Function to clear card text returned by API.
    function clearText(txt){
       if(txt.length > 0){
-         if(txt.includes('<b>'))
-            txt = txt.replace(/[<b></b>]/g, ''); //Remove <b></b> tags.
-         if(txt.includes('\\n'))
-            txt = txt.replace(/\\n/g, ' '); //Replace \n for blank space.
-         if(txt.includes('_'))
-            txt = txt.replace(/_/g, ' '); //Replace _ for blank space.
-         if(txt.includes('[x]'))
-            txt = txt.replace(/\[x\]/g, ''); //Remover [x] marks.
-         if(txt.includes('$'))
-            txt = txt.replace(/\$/g, ''); //Remover $ marks.
+         var clearedText = txt.replace(/\<b\>|\<\/b\>|\<i\>|\<\/i\>|\[x\]|\$|/g, '');
+         clearedText = clearedText.replace(/\\n|_/g, ' ');
+         clearedText = clearedText.replace('@', '0');
       }
 
-      return txt;
+      return clearedText;
    }
 
    return (
