@@ -1,50 +1,104 @@
-import { TouchableHighlight, View, Text, Image, Linking, StatusBar } from "react-native";
+import { TouchableHighlight, View, Text, Image, Linking, StatusBar, TouchableOpacity } from "react-native";
+import { useState } from "react";
+import { en, ptBr } from "../Languages/supportedLanguages";
+import { options } from "../configuration";
 import styles from '../Styles/WelcomeStyle';
- 
+
 export default function Welcome({navigation}) {
+   const [language, setLanguage] = useState(ptBr);
+   const [opacityBr, setOpacityBr] = useState(1);
+   const [opacityEn, setOpacityEn] = useState(0.2);
+
+   //Function to handle app languages.
+   const handleLanguage = (language) => {
+      if(language == 'ptBr'){
+         setLanguage(ptBr);
+         setOpacityBr(1);
+         setOpacityEn(0.2);
+         options.params.locale = 'ptBR';
+      }
+      else{
+         setLanguage(en);
+         setOpacityBr(0.2);
+         setOpacityEn(1);
+         options.params.locale = 'enUS';
+      }
+   }
+
    return (
       <View style={ styles.container }>
          <StatusBar style='light' backgroundColor='black' />
-         <Text style={ styles.welcome }>Welcome to</Text>
-         <Text style={ styles.title }>Hearth Stone{'\n'}Card Checker</Text>
-         <Text style={ styles.text }>
-            This app was made to allow{'\n'}people to search for{'\n'} Hearthstone’s game cards{'\n'} 
-            information based on several{'\n'}data like card name, deck name{'\n'} or star power.{'\n'}
-         </Text>
-         <Text style={ styles.text }>
-            This app uses the HearthStone {'\n'}API available on:{'\n'} 
+         <View style={ styles.flagsView }>
+            <TouchableOpacity
+               style={{ opacity: opacityBr }}
+               onPress={ () => handleLanguage('ptBr') }>
+               <Image
+                  source={ require('../assets/brazil-flag.png')}
+                  style={ styles.flagBr }/>
+            </TouchableOpacity>
+            <TouchableOpacity
+               style={{ opacity: opacityEn }}
+               onPress={ () => handleLanguage(en) }>
+               <Image
+                  source={ require('../assets/united-states-flag.png')}
+                  style={ styles.flagEn }/>
+            </TouchableOpacity>
+         </View>
+         <View style={ styles.textView }>
             <Text 
-               style={ styles.link}
-               onPress={ () => { Linking.openURL('https://hearthstoneapi.com/') }}
-            >https://hearthstoneapi.com/</Text>
-         </Text>
-         
-         <TouchableHighlight style={ styles.button } onPress={ () => navigation.navigate('Swiper') }>
-            <Text style={ styles.buttonText }>Start</Text>
-         </TouchableHighlight>
-         <Text style={ styles.credits }>
-            Developed and designed{'\n'}by Fernando Albiero
-         </Text>
-         <View style={ styles.socialMediaConteiner }>
+               style={ styles.welcome }>
+               {language.welcome}
+            </Text>
+            <Text 
+               style={ styles.title }>
+               {language.welcomeTittle}
+            </Text>
+            <Text 
+               style={ styles.text }>
+               {language.welcomeText1}
+            </Text>
+            <Text 
+               style={ styles.text }> 
+               {language.welcomeText2}
+               <Text 
+                  style={ styles.link}
+                  onPress={ () => { Linking.openURL('https://hearthstoneapi.com/') }}>
+                  {language.welcomeLink}</Text>
+            </Text>
+            
             <TouchableHighlight 
-               underlayColor='#fff'
-               activeOpacity={0.5}
-               onPress={() => Linking.openURL('https://github.com/Fernando-Albiero/')}>
-               <Image 
-                  source={ require('../assets/github.png')} 
-                  style={ styles.socialMediaImage}>
-               </Image>
+               style={ styles.button } 
+               onPress={ () => navigation.navigate('Swiper', { language: language }) }>
+               <Text 
+                  style={ styles.buttonText }>
+                  {language.welcomeButton}
+               </Text>
             </TouchableHighlight>
-            <TouchableHighlight 
-               underlayColor='#fff'
-               activeOpacity={0.5}
-               onPress={() => Linking.openURL('https://www.linkedin.com/in/fernando-albiero-8402302a4/')}>
-               <Image 
-                  source={ require('../assets/linkedin.png')} 
-                  style={ styles.socialMediaImage}>
-               </Image>
-            </TouchableHighlight>
+            <Text 
+               style={ styles.credits }>
+               { language.welcomeCredits}
+            </Text>
+            <View style={ styles.socialMediaConteiner }>
+               <TouchableHighlight 
+                  underlayColor='#fff'
+                  activeOpacity={0.5}
+                  onPress={() => Linking.openURL('https://github.com/Fernando-Albiero/')}>
+                  <Image 
+                     source={ require('../assets/github.png')} 
+                     style={ styles.socialMediaImage}>
+                  </Image>
+               </TouchableHighlight>
+               <TouchableHighlight 
+                  underlayColor='#fff'
+                  activeOpacity={0.5}
+                  onPress={() => Linking.openURL('https://www.linkedin.com/in/fernando-albiero-8402302a4/')}>
+                  <Image 
+                     source={ require('../assets/linkedin.png')} 
+                     style={ styles.socialMediaImage}>
+                  </Image>
+               </TouchableHighlight>
+            </View>
          </View>
       </View>
-   )
+   );
 }

@@ -1,29 +1,54 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
+import { verticalScale, horizontalScale, moderateScale } from './Metrics';
 
 const styles = StyleSheet.create({
    container:{
       flex: 1,
-      justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: '#fff',
-      
+      marginTop: Platform.OS === 'ios' ? verticalScale(50) : '',
+      marginBottom: Platform.OS === 'ios' ? verticalScale(30) : '',
+   },
+   flagsView:{
+      width: '100%', 
+      height: '7%', 
+      flexDirection: 'row', 
+      justifyContent: 'flex-end', 
+      alignItems: 'flex-end'
+   },
+   flagBr:{
+      width: horizontalScale(50), 
+      height: verticalScale(50), 
+      resizeMode: 'contain'
+   },
+   flagEn:{
+      width: horizontalScale(50), 
+      height: verticalScale(50), 
+      resizeMode: 'contain', 
+      marginRight: horizontalScale(25), 
+      marginLeft: horizontalScale(15)
+   },
+   textView:{
+      height: '93%', 
+      justifyContent: 'center', 
+      alignItems: 'center'
    },
    welcome:{
-      fontSize: 20,
+      fontSize: moderateScale(20),
       fontFamily: 'IBMPlexMono'
    },
    title:{
-      fontSize: 32,
+      fontSize: moderateScale(32),
       letterSpacing: -2,
-      marginTop: 20,
-      marginBottom: 20,
+      marginTop: verticalScale(20),
+      marginBottom: verticalScale(20),
       fontFamily: 'Uncial-Caps'
    },
    text:{
-      fontSize: 16,
+      fontSize: moderateScale(16),
       textAlign: 'center',
-      marginLeft: 25,
-      marginRight: 25,
+      marginLeft: horizontalScale(25),
+      marginRight: horizontalScale(25),
       fontFamily: 'IBMPlexMono'
    },
    link:{
@@ -33,21 +58,21 @@ const styles = StyleSheet.create({
    button:{
       justifyContent: 'center',
       alignItems: 'center',
-      width: 120,
-      height: 40,
+      width: horizontalScale(120),
+      height: verticalScale(50),
       borderRadius: 20,
       backgroundColor: 'black',
       borderWidth: 1,
-      marginTop: 20,
-      marginBottom: 20
+      marginTop: verticalScale(20),
+      marginBottom: verticalScale(20)
    },
    buttonText:{
       color: 'white',
       fontFamily: 'IBMPlexMono-Bold',
-      fontSize: 16
+      fontSize: moderateScale(17)
    },
    credits:{
-      fontSize: 12,
+      fontSize: moderateScale(12),
       textAlign: 'center',
       fontFamily: 'IBMPlexMono'
    },
@@ -56,11 +81,11 @@ const styles = StyleSheet.create({
       justifyContent: 'space-around',
       alignItems: 'center',
       width: '25%',
-      marginTop: 20,
+      marginTop: verticalScale(20),
    },
    socialMediaImage:{
-      width: 32,
-      height: 32,
+      width: horizontalScale(40),
+      height: verticalScale(40),
       resizeMode: 'contain'
    }
 })
