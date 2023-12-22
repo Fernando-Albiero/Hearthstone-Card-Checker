@@ -57,7 +57,7 @@ export default function CardInformation({navigation, route}) {
          if(txt.includes('[x]'))
             txt = txt.replace(/\[x\]/g, ''); //Remover [x] marks.
          if(txt.includes('$'))
-            txt = txt.replace(/\$/g, ''); //Remover [x] marks.
+            txt = txt.replace(/\$/g, ''); //Remover $ marks.
       }
 
       return txt;
