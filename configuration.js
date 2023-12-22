@@ -1,9 +1,7 @@
 //Request configuration.
-import { Dimensions } from 'react-native';
-
 const options = {
    method: 'GET',
-   params: {collectible: '1'},
+   params: {collectible: '1', locale: 'ptBR'},
    headers: {
      'X-RapidAPI-Key': '81935cf82dmsh5cbfb766a872ce7p16553cjsnec4be953734c',
      'X-RapidAPI-Host': 'omgvamp-hearthstone-v1.p.rapidapi.com'

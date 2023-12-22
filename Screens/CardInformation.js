@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { View, Text, Image, ActivityIndicator, TouchableOpacity, ScrollView } from 'react-native';
 import axios from 'axios';
 import styles from '../Styles/CardInformationStyle';
-import { options } from '../RequestOptionsAndDecks';
+import { options } from '../configuration';
 
 export default function CardInformation({navigation, route}) {
    const [loading, setLoading] = useState(true);

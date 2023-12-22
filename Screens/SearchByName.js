@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { AntDesign } from '@expo/vector-icons'; 
 import axios from 'axios';
 import styles from '../Styles/SearchByNameStyle';
-import { options } from '../RequestOptionsAndDecks';
+import { options } from '../configuration';
 import CustomModal from '../Components/CustomModal';
 
 export default function SearchByName({navigation}) {

@@ -3,8 +3,7 @@ import { SelectList } from 'react-native-dropdown-select-list';
 import { useState } from 'react';
 import axios from 'axios';
 import styles from '../Styles/SearchByDeckStyle';
-import { options } from '../RequestOptionsAndDecks';
-import { decks } from '../RequestOptionsAndDecks';
+import { options, decks } from '../configuration';
 
 export default function SearchByDeck({navigation}) {
    const [loading, setLoading] = useState(false);
