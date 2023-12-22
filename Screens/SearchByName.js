@@ -1,4 +1,4 @@
-import { ActivityIndicator, Image, Keyboard, KeyboardAvoidingView, Modal, Text, TextInput, TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
+import { ActivityIndicator, Image, Keyboard, KeyboardAvoidingView, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from 'react-native';
 import { useState } from 'react';
 import { AntDesign } from '@expo/vector-icons'; 
 import axios from 'axios';
@@ -43,17 +43,14 @@ export default function SearchByName({navigation}) {
             }
             else{
                handleModal('Ops!', 'Card not find!\n\nDid you type the card name correctly?\n');
-               //alert('Card not find!\n\nDid you type the card name correctly?');
             }
          }
          catch(error){
                handleModal('Ops!', 'Card not find!\n\nDid you type the card name correctly?\n');
-            //alert('Card not find!\n\nDid you type the card name correctly?');
          }
       } 
       else{
          handleModal('Ops!', 'Please, type a card name!\n');
-         //alert('Please, type a card name!');
       }
 
       //Stop loading.
@@ -139,39 +136,6 @@ export default function SearchByName({navigation}) {
                ) :
                <></>
          }
-         {/*<Modal
-            visible={ isModalVisible }
-            dismiss= { () => setIsModalVisible(false) }
-            animationType='fade'
-            statusBarTranslucent={ false }
-            transparent={ true }>
-            
-            <TouchableWithoutFeedback  onPress={ handleModal }>
-               <View style={{ flex: 1, width: '100%', height: '100%'}}>
-                  <TouchableWithoutFeedback>
-                     <View
-                        style={ styles.modal }>
-                        <TouchableOpacity 
-                           style={{ alignSelf: 'flex-end', marginBottom: 10 }}
-                           onPress={ handleModal }>
-                           <AntDesign name="closecircleo" size={24} color="black" />
-                        </TouchableOpacity>
-                     
-                        <Text style={{ fontFamily: 'IBMPlexMono' }}>
-                           <Text style={{ fontSize: 16, fontFamily: 'IBMPlexMono-Bold'}}>Dont you know any card?{'\n\n'}</Text>
-                              Try some of these names:{'\n\n'}
-                              - Archmage Antonidas{'\n'}
-                              - Cage Head{'\n'}
-                              - DJ Manastorm{'\n'}
-                              - Frost Strike{'\n'}
-                              - The Jailer{'\n'}
-                              - Ysera{'\n'}
-                        </Text>
-                     </View>
-                  </TouchableWithoutFeedback>
-               </View>
-            </TouchableWithoutFeedback>
-      </Modal>*/}
       </View>
    );
 }
