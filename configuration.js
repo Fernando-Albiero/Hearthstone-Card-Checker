@@ -9,7 +9,7 @@ const options = {
 };
 
 //Decks name.
-const decks = [
+const decksEn = [
    { key:'1', value:'Ashes of Outland' },
    { key:'2', value:'Blackrock Mountain' },
    { key:'3', value:'Caverns of Time' },
@@ -44,5 +44,5 @@ const decks = [
    { key:'32', value:'Whispers of the Old Gods' }
 ];
 
-export {options, decks};
+export {options, decksEn};
 

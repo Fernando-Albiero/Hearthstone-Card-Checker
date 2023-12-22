@@ -3,9 +3,11 @@ import { SelectList } from 'react-native-dropdown-select-list';
 import { useState } from 'react';
 import axios from 'axios';
 import styles from '../Styles/SearchByDeckStyle';
-import { options, decks } from '../configuration';
+import { options, decksEn } from '../configuration';
 
-export default function SearchByDeck({navigation}) {
+
+export default function SearchByDeck(props) {
+   const { navigation, language } = props;
    const [loading, setLoading] = useState(false);
    const [cardInformation, setCardInformation] = useState([]);
 
@@ -42,7 +44,7 @@ export default function SearchByDeck({navigation}) {
       return (
          <TouchableOpacity 
             style={ styles.cardConteiner }
-            onPress={ () => navigation.navigate('CardInformation', {cardName: item.name}) }>
+            onPress={ () => navigation.navigate('CardInformation', {cardName: item.name, language: language}) }>
             <Image
                style={ styles.cardImage }
                source={{ uri: item.img }}
@@ -55,15 +57,15 @@ export default function SearchByDeck({navigation}) {
    return (
       <View 
          style={ styles.container }>
-         <Text style={ styles.deckName }>Search by Deck</Text>
+         <Text style={ styles.deckName }>{ language.SBDTitle}</Text>
          <SelectList
             boxStyles={ styles.selectList }
             dropdownStyles={ styles.dropdownMenu }
-            placeholder='Select a deck'
-            searchPlaceholder='Search'
+            placeholder={ language.SBDPlaceholder }
+            searchPlaceholder={ language.SBDSearchPlaceholder }
             fontFamily='IBMPlexMono'
             setSelected={ (deckName) => requestAPI(deckName) } 
-            data={ decks } 
+            data={ decksEn } 
             save="value"
          />
          {

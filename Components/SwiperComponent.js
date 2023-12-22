@@ -5,28 +5,30 @@ import SearchByDeck from '../Screens/SearchByDeck';
 import SearchByMana from '../Screens/SearchByMana';
 import styles from '../Styles/SwiperStyle';
 
-export default function SwiperComponent({navigation}) {
+export default function SwiperComponent({navigation, route}) {
+   const {language} = route.params;
+   
    return (
-      <Swiper 
-         
-         showsButtons={true}
-         index={0}
-         loop={false}
-         dotStyle={ styles.dots }
+      <Swiper
          activeDotStyle={ styles.dots }
          activeDotColor='black'
+         dotStyle={ styles.dots }
+         index={0}
+         loop={false} 
+         showsButtons={true}
+         nextButton={ <Text style={ styles.prevNextButtons}>›</Text> }
          prevButton={ <Text style={ styles.prevNextButtons}>‹</Text> }
-         nextButton={ <Text style={ styles.prevNextButtons}>›</Text> }>
+      >
 
-         <View style={{ flex: 1}}>
-            <SearchByName navigation={navigation}/>
+         <View style={{ flex: 1 }}>
+            <SearchByName navigation={navigation} language={language}/>
          </View>
-         <View style={{ flex: 1}}>
-            <SearchByDeck navigation={navigation}/>
+         <View style={{ flex: 1 }}>
+            <SearchByDeck navigation={navigation} language={language}/>
          </View>
-         <View style={{ flex: 1}}>
-            <SearchByMana navigation={navigation}/>
+         <View style={{ flex: 1 }}>
+            <SearchByMana navigation={navigation} language={language}/>
          </View>
       </Swiper>
-   )
+   );
  }

@@ -1,27 +1,28 @@
 import { ActivityIndicator, Image, Keyboard, KeyboardAvoidingView, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from 'react-native';
-import { useState } from 'react';
 import { AntDesign } from '@expo/vector-icons'; 
-import axios from 'axios';
-import styles from '../Styles/SearchByNameStyle';
+import { useState } from 'react';
 import { options } from '../configuration';
+import axios from 'axios';
 import CustomModal from '../Components/CustomModal';
+import styles from '../Styles/SearchByNameStyle';
 
-export default function SearchByName({navigation}) {
+export default function SearchByName(props) {
+   const { navigation, language } = props;
    const [cardName, setCardName] = useState('');
-   const [cardImage, setCardImage] = useState(require('../assets/cardBack2.png'));
+   const [cardImage, setCardImage] = useState(require('../assets/cardback.png'));
    const [loading, setLoading] = useState(false);
+   const [request, setRequest] = useState(false);
    const [showModal, setShowModal] = useState(false);
    const [modalTitle, setModalTitle] = useState('');
    const [modalText, setModalText] = useState('');
    const [opacity, setOpacity] = useState(1);
-   const [request, setRequest] = useState(false);
    
    //Function to handle with searches.
    const requestAPI = async () => {
       //Start loading.
       Keyboard.dismiss();
       setLoading(true);
-      setCardImage(require('../assets/cardBack2.png'));
+      setCardImage(require('../assets/cardback.png'));
       setRequest(false);
 
       //Verify card name.
@@ -42,15 +43,15 @@ export default function SearchByName({navigation}) {
                }
             }
             else{
-               handleModal('Ops!', 'Card not find!\n\nDid you type the card name correctly?\n');
+               handleModal(language.SBNModalTitle2, language.SBNModalText2);
             }
          }
          catch(error){
-               handleModal('Ops!', 'Card not find!\n\nDid you type the card name correctly?\n');
+               handleModal(language.SBNModalTitle2, language.SBNModalText2);
          }
       } 
       else{
-         handleModal('Ops!', 'Please, type a card name!\n');
+         handleModal(language.SBNModalTitle2, language.SBNModalText3);
       }
 
       //Stop loading.
@@ -62,10 +63,11 @@ export default function SearchByName({navigation}) {
       Keyboard.dismiss();
 
       if(request){
-         navigation.navigate('CardInformation', {cardName: cardName});
+         navigation.navigate('CardInformation', {cardName: cardName, language: language});
       }
    }
 
+   //Function to handle modal.
    const handleModal = (title, text) => {
       setModalTitle(title);
       setModalText(text);
@@ -98,7 +100,7 @@ export default function SearchByName({navigation}) {
                   </TouchableOpacity>
                   {
                      request ? (
-                        <Text style={ styles.information }>Tap on card for <Text style={{ fontWeight: 'bold'}}>more</Text> information!</Text>
+                        <Text style={ styles.information }>{language.SBNBack}<Text style={{ fontWeight: 'bold'}}>{language.SBNBackBold}</Text>{language.SBNBackInformation}</Text>
                      ) : <></>
                   }   
                </View>
@@ -111,10 +113,10 @@ export default function SearchByName({navigation}) {
                <TextInput
                   style={ styles.input }
                   onChangeText={ (name) => setCardName(name.toLowerCase()) }
-                  placeholder='Type a card name...'
+                  placeholder={language.SBNInputText}
                />
                <TouchableHighlight 
-                  onPress={ () => handleModal('Dont you know any card?', `Try some of these names:\n- Archmage Antonidas\n- Cage Head\n- DJ Manastorm\n- Frost Strike\n- The Jailer\n- Ysera\n`) } 
+                  onPress={ () => handleModal( language.SBNMModalTitle1, language.SBNModalText1) } 
                   underlayColor='none'>
                   <AntDesign name="questioncircle" size={ 40 } color="black" style={{marginLeft: 5}} />
                </TouchableHighlight>
@@ -122,7 +124,7 @@ export default function SearchByName({navigation}) {
             <TouchableHighlight 
                style={ styles.button } 
                onPress={ requestAPI }>
-               <Text style={ styles.buttonText }>Search</Text>
+               <Text style={ styles.buttonText }>{language.SBNButtonSearch}</Text>
             </TouchableHighlight>
          </KeyboardAvoidingView>
          {

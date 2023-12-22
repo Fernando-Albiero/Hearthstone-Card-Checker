@@ -4,12 +4,12 @@ import { en, ptBr } from "../Languages/supportedLanguages";
 import { options } from "../configuration";
 import styles from '../Styles/WelcomeStyle';
 
-
 export default function Welcome({navigation}) {
    const [language, setLanguage] = useState(ptBr);
    const [opacityBr, setOpacityBr] = useState(1);
    const [opacityEn, setOpacityEn] = useState(0.2);
 
+   //Function to handle app languages.
    const handleLanguage = (language) => {
       if(language == 'ptBr'){
          setLanguage(ptBr);
@@ -62,13 +62,13 @@ export default function Welcome({navigation}) {
                {language.welcomeText2}
                <Text 
                   style={ styles.link}
-                  onPress={ () => { Linking.openURL('https://hearthstoneapi.com/') }}
-               >{language.welcomeLink}</Text>
+                  onPress={ () => { Linking.openURL('https://hearthstoneapi.com/') }}>
+                  {language.welcomeLink}</Text>
             </Text>
             
             <TouchableHighlight 
                style={ styles.button } 
-               onPress={ () => navigation.navigate('Swiper') }>
+               onPress={ () => navigation.navigate('Swiper', { language: language }) }>
                <Text 
                   style={ styles.buttonText }>
                   {language.welcomeButton}
@@ -100,5 +100,5 @@ export default function Welcome({navigation}) {
             </View>
          </View>
       </View>
-   )
+   );
 }

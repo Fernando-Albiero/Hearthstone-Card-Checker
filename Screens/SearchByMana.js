@@ -4,9 +4,9 @@ import axios from "axios";
 import styles from "../Styles/SearchByManaStyle";
 import { options } from '../configuration';
 
-var opt = JSON.parse(JSON.stringify(options));
-
-export default function SearchByMana({navigation}) {
+export default function SearchByMana(props) {
+   const opt = JSON.parse(JSON.stringify(options));
+   const { navigation, language } = props;
    const [cards, setCards] = useState([]);
    const [selected, setSelected] = useState(undefined);
    const [disabled, setDisabled] = useState(false);
@@ -33,7 +33,6 @@ export default function SearchByMana({navigation}) {
 
       opt.params.cost = item.id;
     
-
       try {
          //Do the request to hearthstone API.
          const response = await axios.request('https://omgvamp-hearthstone-v1.p.rapidapi.com/cards', opt);
@@ -68,7 +67,7 @@ export default function SearchByMana({navigation}) {
       return (
          <TouchableOpacity 
             style={styles.cardConteiner} 
-            onPress={ () => navigation.navigate('CardInformation', {cardName: item.name})  }>
+            onPress={ () => navigation.navigate('CardInformation', {cardName: item.name, language: language})  }>
             <Image
                style={ styles.cardImage }
                source={{ uri: item.img }}
@@ -100,15 +99,15 @@ export default function SearchByMana({navigation}) {
 
    return (
       <View style={ styles.container }>
-         <Text style={ styles.manaCostText }>Search by Mana</Text>
+         <Text style={ styles.manaCostText }>{language.SBMTitle}</Text>
          <View style={ styles.costsList }>
             {  costs.map((item) => handleCosts(item)) }
          </View>
          {
             loading ? (
                <View style={styles.loading}>
-                  <Text style={ styles.loadingMessage}>This operation can take a while because there are many cards to process.</Text>
-                  <Text style={ styles.loadingSubMessage}>Please wait a moment!</Text>
+                  <Text style={ styles.loadingMessage}>{language.SBMLoadingText}</Text>
+                  <Text style={ styles.loadingSubMessage}>{language.SBMSubLoadingText}</Text>
                   <ActivityIndicator size={40} color="black"></ActivityIndicator>
                </View>
             ) : (
