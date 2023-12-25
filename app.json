@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "HearthstoneCardChecker",
-    "slug": "HearthstoneCardChecker",
+    "name": "Hearthstone Card Checker",
+    "slug": "Hearthstone Card Checker",
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
