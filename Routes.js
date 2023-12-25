@@ -1,9 +1,8 @@
-import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Welcome from './Screens/Welcome';
 import CardInformation from './Screens/CardInformation';
 import SwiperComponent from './Components/SwiperComponent';
+import Welcome from './Screens/Welcome';
 
 const Stack = createStackNavigator();
 

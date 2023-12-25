@@ -1,10 +1,9 @@
 import { ActivityIndicator, FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
 import { SelectList } from 'react-native-dropdown-select-list';
 import { useState } from 'react';
+import { options, decksEn } from '../configuration';
 import axios from 'axios';
 import styles from '../Styles/SearchByDeckStyle';
-import { options, decksEn } from '../configuration';
-
 
 export default function SearchByDeck(props) {
    const { navigation, language } = props;

@@ -2,6 +2,7 @@ import 'react-native-gesture-handler';
 import Routes from './Routes';
 import { useFonts } from 'expo-font';
 
+//Custom fonts used over the entire app.
 let customFonts = {
    'BelweBoldBT': require('./assets/fonts/BelweBoldBT.ttf'),
    'IBMPlexMono' : require('./assets/fonts/IBMPlexMono-Regular.ttf'),

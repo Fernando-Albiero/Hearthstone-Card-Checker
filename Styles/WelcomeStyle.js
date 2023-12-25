@@ -60,9 +60,9 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       width: horizontalScale(120),
       height: verticalScale(50),
-      borderRadius: 20,
+      borderRadius: moderateScale(20),
       backgroundColor: 'black',
-      borderWidth: 1,
+      borderWidth: moderateScale(1),
       marginTop: verticalScale(20),
       marginBottom: verticalScale(20)
    },

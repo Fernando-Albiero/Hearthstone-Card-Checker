@@ -20,13 +20,13 @@ export default function SwiperComponent({navigation, route}) {
          prevButton={ <Text style={ styles.prevNextButtons}>‹</Text> }
       >
 
-         <View style={{ flex: 1 }}>
+         <View style={ styles.view }>
             <SearchByName navigation={navigation} language={language}/>
          </View>
-         <View style={{ flex: 1 }}>
+         <View style={ styles.view }>
             <SearchByDeck navigation={navigation} language={language}/>
          </View>
-         <View style={{ flex: 1 }}>
+         <View style={ styles.view }>
             <SearchByMana navigation={navigation} language={language}/>
          </View>
       </Swiper>

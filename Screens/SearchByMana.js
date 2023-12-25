@@ -1,8 +1,8 @@
 import { ActivityIndicator, FlatList, Image, Text, TouchableOpacity, View, } from "react-native";
 import { useState } from "react";
+import { options } from '../configuration';
 import axios from "axios";
 import styles from "../Styles/SearchByManaStyle";
-import { options } from '../configuration';
 
 export default function SearchByMana(props) {
    const opt = JSON.parse(JSON.stringify(options));
@@ -12,6 +12,7 @@ export default function SearchByMana(props) {
    const [disabled, setDisabled] = useState(false);
    const [loading, setLoading] = useState(false);
    
+   //Object with mana costs images selected and unselected.
    const costs = [
       { id: 0, uri: [require("../assets/0Unselected.png"), require("../assets/0Selected.png")]},
       { id: 1, uri: [require("../assets/1Unselected.png"), require("../assets/1Selected.png")]},
@@ -26,7 +27,7 @@ export default function SearchByMana(props) {
       { id: 10, uri: [require("../assets/10Unselected.png"), require("../assets/10Selected.png")]}
   ];
 
-   //implementar 10+ costs.
+   //Function to handle with api request. Currently works only with cards between mana cost 1-10. I know there is cards higher.
    const handleSearch = async (item) => {
       setDisabled(true);
       setLoading(true);
@@ -63,7 +64,8 @@ export default function SearchByMana(props) {
       setDisabled(false);
    }
 
-  const handleCards = (item) => {
+   //Function to handle click on cards.
+   const handleCards = (item) => {
       return (
          <TouchableOpacity 
             style={styles.cardConteiner} 
@@ -76,10 +78,10 @@ export default function SearchByMana(props) {
       );
    };
 
+   //Function to handle with click on mana cost images.
    const handleCosts = (item) => {
       var image = selected == item.id ? item.uri[1] : item.uri[0];
 
-      //desabilitar todos os botões quando um foi selecionado.
       return (
          <TouchableOpacity
             key={ item.id }

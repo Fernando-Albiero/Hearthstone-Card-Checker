@@ -2,6 +2,9 @@ import { StyleSheet } from 'react-native';
 import { verticalScale } from './Metrics';
 
 const styles = StyleSheet.create({
+   view:{
+      flex: 1
+   },
    prevNextButtons:{
       color: 'black',
       fontSize: 60

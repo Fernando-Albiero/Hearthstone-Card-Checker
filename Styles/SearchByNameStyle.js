@@ -57,15 +57,6 @@ const styles = StyleSheet.create({
       fontSize: moderateScale(17),
       fontFamily: 'IBMPlexMono-Bold'
    },
-   modal:{
-      width: horizontalScale(300), 
-      backgroundColor: 'white',
-      borderRadius: 20, 
-      borderWidth: 2, 
-      padding: 10, 
-      alignSelf: 'center',
-      marginTop:  (windowHeight/2)-200
-   }
 })
 
 export default styles;

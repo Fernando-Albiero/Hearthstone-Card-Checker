@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
       marginLeft: horizontalScale(50)
    },
    selectList:{
-      borderWidth: 2, 
+      borderWidth: moderateScale(2), 
       borderColor: 'black', 
       alignSelf: 'center', 
       width: '80%', 
@@ -26,11 +26,11 @@ const styles = StyleSheet.create({
    dropdownMenu:{
       backgroundColor: "white",
       width: "80%",
-      top: -10,
+      top: verticalScale(-10),
       alignSelf: 'center',
       zIndex: 999,
       borderColor: 'black',
-      borderWidth: 2
+      borderWidth: moderateScale(2)
    },
    list:{
       marginTop: verticalScale(10),

@@ -25,7 +25,7 @@ const en = {
    SBDSearchPlaceholder: 'Search',
    /*######################### SEARCH BY MANA TEXTS #########################*/
    SBMTitle: 'Search by Mana',
-   SBMLoadingText: 'This operation can take a while because there are many cards to process.',
+   SBMLoadingText: 'This operation can take a while. There are many cards to process.',
    SBMSubLoadingText: 'Please wait a moment!',
    /*######################## CARD INFORMATION TEXTS ########################*/
    CIType: 'Type: ',
