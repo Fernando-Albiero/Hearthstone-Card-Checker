@@ -36,3 +36,7 @@ On emulator or on your device, open the Expo Go app and scan the QrCode generate
 #### 2) Installing the Application Directly on Your Device
 - Android version.
 - iOS version.
+
+## Contact
+<a href="mailto:fernando.w.albiero@gmail.com?"><img src="https://img.shields.io/badge/gmail-%23DD0031.svg?&style=for-the-badge&logo=gmail&logoColor=white"/></a>
+[![General badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/fernando-albiero-8402302a4/)
