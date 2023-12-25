@@ -3,8 +3,8 @@ const options = {
    method: 'GET',
    params: {collectible: '1', locale: 'ptBR'},
    headers: {
-     'X-RapidAPI-Key': '81935cf82dmsh5cbfb766a872ce7p16553cjsnec4be953734c',
-     'X-RapidAPI-Host': 'omgvamp-hearthstone-v1.p.rapidapi.com'
+      'X-RapidAPI-Key': '65d145c520msh687671430d1cc60p1945d8jsn6a5305d3d401',
+      'X-RapidAPI-Host': 'omgvamp-hearthstone-v1.p.rapidapi.com'
    }
 };
 
