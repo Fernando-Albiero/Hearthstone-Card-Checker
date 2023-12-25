@@ -14,17 +14,17 @@ export default function SearchByMana(props) {
    
    //Object with mana costs images selected and unselected.
    const costs = [
-      { id: 0, uri: [require("../assets/0Unselected.png"), require("../assets/0Selected.png")]},
-      { id: 1, uri: [require("../assets/1Unselected.png"), require("../assets/1Selected.png")]},
-      { id: 2, uri: [require("../assets/2Unselected.png"), require("../assets/2Selected.png")]},
-      { id: 3, uri: [require("../assets/3Unselected.png"), require("../assets/3Selected.png")]},
-      { id: 4, uri: [require("../assets/4Unselected.png"), require("../assets/4Selected.png")]},
-      { id: 5, uri: [require("../assets/5Unselected.png"), require("../assets/5Selected.png")]},
-      { id: 6, uri: [require("../assets/6Unselected.png"), require("../assets/6Selected.png")]},
-      { id: 7, uri: [require("../assets/7Unselected.png"), require("../assets/7Selected.png")]},
-      { id: 8, uri: [require("../assets/8Unselected.png"), require("../assets/8Selected.png")]},
-      { id: 9, uri: [require("../assets/9Unselected.png"), require("../assets/9Selected.png")]},
-      { id: 10, uri: [require("../assets/10Unselected.png"), require("../assets/10Selected.png")]}
+      { id: 0, uri: [require("../assets/0-unselected.png"), require("../assets/0-selected.png")]},
+      { id: 1, uri: [require("../assets/1-unselected.png"), require("../assets/1-selected.png")]},
+      { id: 2, uri: [require("../assets/2-unselected.png"), require("../assets/2-selected.png")]},
+      { id: 3, uri: [require("../assets/3-unselected.png"), require("../assets/3-selected.png")]},
+      { id: 4, uri: [require("../assets/4-unselected.png"), require("../assets/4-selected.png")]},
+      { id: 5, uri: [require("../assets/5-unselected.png"), require("../assets/5-selected.png")]},
+      { id: 6, uri: [require("../assets/6-unselected.png"), require("../assets/6-selected.png")]},
+      { id: 7, uri: [require("../assets/7-unselected.png"), require("../assets/7-selected.png")]},
+      { id: 8, uri: [require("../assets/8-unselected.png"), require("../assets/8-selected.png")]},
+      { id: 9, uri: [require("../assets/9-unselected.png"), require("../assets/9-selected.png")]},
+      { id: 10, uri: [require("../assets/10-unselected.png"), require("../assets/10-selected.png")]}
   ];
 
    //Function to handle with api request. Currently works only with cards between mana cost 1-10. I know there is cards higher.
