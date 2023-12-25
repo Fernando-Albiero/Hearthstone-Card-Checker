@@ -10,10 +10,19 @@ export default function Welcome({navigation}) {
    const [opacityEn, setOpacityEn] = useState(0.2);
 
    useEffect(() =>{
-      BackHandler.addEventListener('hardwareBackPress', () =>{
+      const backAction = () => {
          return true;
+      };
+
+      const unsubscribe = navigation.addListener('beforeRemove', (e) => {
+         e.preventDefault();
+         backAction();
       })
-   });
+
+      return () => {
+         unsubscribe();
+      };
+   }, [navigation]);
 
    //Function to handle app languages.
    const handleLanguage = (language) => {
