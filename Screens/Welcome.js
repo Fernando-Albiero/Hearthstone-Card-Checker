@@ -1,5 +1,5 @@
-import { TouchableHighlight, View, Text, Image, Linking, StatusBar, TouchableOpacity } from "react-native";
-import { useState } from "react";
+import { TouchableHighlight, View, Text, Image, Linking, StatusBar, TouchableOpacity, BackHandler } from "react-native";
+import { useEffect, useState } from "react";
 import { en, ptBr } from "../Languages/supportedLanguages";
 import { options } from "../configuration";
 import styles from '../Styles/WelcomeStyle';
@@ -8,6 +8,12 @@ export default function Welcome({navigation}) {
    const [language, setLanguage] = useState(ptBr);
    const [opacityBr, setOpacityBr] = useState(1);
    const [opacityEn, setOpacityEn] = useState(0.2);
+
+   useEffect(() =>{
+      BackHandler.addEventListener('hardwareBackPress', () =>{
+         return true;
+      })
+   });
 
    //Function to handle app languages.
    const handleLanguage = (language) => {
