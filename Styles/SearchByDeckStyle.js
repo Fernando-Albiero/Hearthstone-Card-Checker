@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
    container:{
       flex: 1,
       paddingTop: verticalScale(50),
+      backgroundColor: '#fff',
       marginTop: Platform.OS === 'ios' ? verticalScale(50) : '',
       marginBottom: Platform.OS === 'ios' ? verticalScale(30) : ''
    },
