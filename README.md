@@ -26,8 +26,8 @@ An app for check Hearthstone's game cards information by name, deck and mana cos
 To run this project using Expo go, you should install the emulator of your preference and download and install Expo Go app on it. If you prefer, you can download and install Expo Go app directly on your real device.
 After that, open command prompt and type the commands below:
 ```bash
-git clone https://github.com/Fernando-Albiero/HearthstoneCardChecker
-cd HearthstoneCardChecker
+git clone https://github.com/Fernando-Albiero/Hearthstone-Card-Checker
+cd Hearthstone-Card-Checker
 npm install
 npx expo start
 ```
