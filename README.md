@@ -1,4 +1,4 @@
-# Hearthstone CardChecker
+# Hearthstone Card Checker
 [![NPM](https://img.shields.io/npm/l/express)](https://github.com/Fernando-Albiero/HearthstoneCardChecker/blob/master/LICENSE)
 
 
