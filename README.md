@@ -5,8 +5,8 @@
 An app for check Hearthstone's game cards information by name, deck and mana cost.
 
 ## Layout
-<img src="https://github.com/Fernando-Albiero/HearthstoneCardChecker/blob/master/assets/welcome-screen.png" width="280" height="478"> <img src="https://github.com/Fernando-Albiero/HearthstoneCardChecker/blob/master/assets/search-by-name-screen.png" width="280" height="478"> <img src="https://github.com/Fernando-Albiero/HearthstoneCardChecker/blob/master/assets/search-by-name-screen2.png" width="280" height="478">
-<img src="https://github.com/Fernando-Albiero/HearthstoneCardChecker/blob/master/assets/search-by-deck-screen.png" width="280" height="478"> <img src="https://github.com/Fernando-Albiero/HearthstoneCardChecker/blob/master/assets/search-by-mana-screen.png" width="280" height="478"> <img src="https://github.com/Fernando-Albiero/HearthstoneCardChecker/blob/master/assets/card-information-screen.png" width="280" height="478">
+<img src="https://github.com/Fernando-Albiero/HearthstoneCardChecker/blob/master/assets/welcome-screen.png" width="270" height="461"> <img src="https://github.com/Fernando-Albiero/HearthstoneCardChecker/blob/master/assets/search-by-name-screen.png" width="270" height="461"> <img src="https://github.com/Fernando-Albiero/HearthstoneCardChecker/blob/master/assets/search-by-name-screen2.png" width="270" height="461">
+<img src="https://github.com/Fernando-Albiero/HearthstoneCardChecker/blob/master/assets/search-by-deck-screen.png" width="270" height="461"> <img src="https://github.com/Fernando-Albiero/HearthstoneCardChecker/blob/master/assets/search-by-mana-screen.png" width="270" height="461"> <img src="https://github.com/Fernando-Albiero/HearthstoneCardChecker/blob/master/assets/card-information-screen.png" width="270" height="461">
 
 ## Technologies
 - React Native
