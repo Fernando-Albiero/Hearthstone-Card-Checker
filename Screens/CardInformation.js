@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { View, Text, Image, ActivityIndicator, TouchableOpacity, ScrollView } from 'react-native';
 import axios from 'axios';
 import styles from '../Styles/CardInformationStyle';
-import { options } from '../configuration';
 
 export default function CardInformation({route, navigation}) {
    const {cardName, language} = route.params;
@@ -19,22 +18,15 @@ export default function CardInformation({route, navigation}) {
 
       try {
          //Do the request.
-         const response = await axios.request(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/${cardName}`, options);
-         const data = response.data;
-         var card = null;
+         const response = await axios.request(`https://hearthstone-card-checker-back-ba8f1169b98d.herokuapp.com/cardInformation/${cardName}`, {
+            params: {
+               locale: language.id
+            },
+         });
 
-         //Extract card information.
-         for(let i=0; i<data.length; i++){
-            if(data[i].hasOwnProperty('img')){
-               card = data[i];
-               break;
-            }
-         }
+         const { card } = response.data;
 
-         if(card != null){
-            if(!card.hasOwnProperty('text')){
-               card.text = 'This card doesn\'t contain a text';
-            }
+         if(card){
             setCard(card);
          }
       }
@@ -43,17 +35,6 @@ export default function CardInformation({route, navigation}) {
       }
       
       setLoading(false);
-   }
-
-   //Function to clear card text returned by API.
-   function clearText(txt){
-      if(txt.length > 0){
-         var clearedText = txt.replace(/\<b\>|\<\/b\>|\<i\>|\<\/i\>|\[x\]|\$|/g, '');
-         clearedText = clearedText.replace(/\\n|_/g, ' ');
-         clearedText = clearedText.replace('@', '0');
-      }
-
-      return clearedText;
    }
 
    return (
@@ -70,7 +51,7 @@ export default function CardInformation({route, navigation}) {
                   <ScrollView style={ styles.scroll }>
                      <Text style={ styles.cardName }>{card.name}</Text>
                      <Text style={ styles.cardFlavor }>{'\''}{card.flavor}{'\''}</Text>
-                     <Text style={ styles.cardText }>{ clearText(card.text) }</Text>
+                     <Text style={ styles.cardText }>{ card.text }</Text>
                      <Text style={ styles.titles }>{language.CIType}
                         <Text style={ styles.information }>{card.type}</Text>
                      </Text>

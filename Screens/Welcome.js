@@ -1,11 +1,11 @@
 import { TouchableHighlight, View, Text, Image, Linking, StatusBar, TouchableOpacity, BackHandler } from "react-native";
 import { useEffect, useState } from "react";
-import { en, ptBr } from "../Languages/supportedLanguages";
+import { en, ptBR } from "../Languages/supportedLanguages";
 import { options } from "../configuration";
 import styles from '../Styles/WelcomeStyle';
 
 export default function Welcome({navigation}) {
-   const [language, setLanguage] = useState(ptBr);
+   const [language, setLanguage] = useState(ptBR);
    const [opacityBr, setOpacityBr] = useState(1);
    const [opacityEn, setOpacityEn] = useState(0.2);
 
@@ -26,8 +26,8 @@ export default function Welcome({navigation}) {
 
    //Function to handle app languages.
    const handleLanguage = (language) => {
-      if(language == 'ptBr'){
-         setLanguage(ptBr);
+      if(language == 'ptBR'){
+         setLanguage(ptBR);
          setOpacityBr(1);
          setOpacityEn(0.2);
          options.params.locale = 'ptBR';
@@ -46,7 +46,7 @@ export default function Welcome({navigation}) {
          <View style={ styles.flagsView }>
             <TouchableOpacity
                style={{ opacity: opacityBr }}
-               onPress={ () => handleLanguage('ptBr') }>
+               onPress={ () => handleLanguage('ptBR') }>
                <Image
                   source={ require('../assets/brazil-flag.png')}
                   style={ styles.flagBr }/>

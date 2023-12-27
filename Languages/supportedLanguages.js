@@ -36,8 +36,8 @@ const en = {
    CIBack: 'Tap on card to ',
    CIBackBold: 'back!'
  };
- const ptBr = {
-   id: 'ptBr',
+ const ptBR = {
+   id: 'ptBR',
    /*############################# WELCOME TEXTS ##############################*/
    welcome: 'Bem-vindo ao',
    welcomeTittle: `Hearth Stone\nCard Checker`,
@@ -55,12 +55,12 @@ const en = {
    SBNModalText3: `Por favor, digite o nome da carta!\n`,
    SBNButtonSearch: 'Buscar',
    /*######################### SEARCH BY DECK TEXTS #########################*/
-   SBDTitle: 'Pesquisar por Baralho',
+   SBDTitle: 'Buscar por Baralho',
    SBDPlaceholder: 'Selecione o Baralho',
    SBDSearchPlaceholder: 'Buscar',
    /*######################### SEARCH BY MANA TEXTS #########################*/
    SBMTitle: 'Buscar por Custo de Mana',
-   SBMLoadingText: 'Esta operação pode demorar um pouco pois existem muitas cartas a serem processadas.',
+   SBMLoadingText: 'Esta operação pode demorar um pouco, pois existem muitas cartas a serem processadas.',
    SBMSubLoadingText: 'Por favor, aguarde um momento!',
    /*######################## CARD INFORMATION TEXTS ########################*/
    CIType: 'Tipo: ',
@@ -72,4 +72,4 @@ const en = {
    CIBackBold: 'voltar!'
  };
 
- export { en, ptBr }
+ export { en, ptBR }
