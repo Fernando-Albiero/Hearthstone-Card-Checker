@@ -14,7 +14,7 @@ An app for check Hearthstone's game cards information by name, deck and mana cos
 - API: https://hearthstoneapi.com
 
 ## Deploy
-The app's backend was deployed using Heroku (https://www.heroku.com).
+The app's backend was deployed using Heroku - https://www.heroku.com.
 
 ## How to Run
 
