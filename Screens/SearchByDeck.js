@@ -1,7 +1,7 @@
 import { ActivityIndicator, FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
 import { SelectList } from 'react-native-dropdown-select-list';
 import { useState } from 'react';
-import { options, decksEn } from '../configuration';
+import { decksEn } from '../configuration';
 import axios from 'axios';
 import styles from '../Styles/SearchByDeckStyle';
 
@@ -11,24 +11,22 @@ export default function SearchByDeck(props) {
    const [cardInformation, setCardInformation] = useState([]);
 
    //Function to handle with API request by deck name.
-   async function requestAPI(deckName){
+   async function requestDeck(deckName){
       //Start loading.
       setLoading(true);
 
       try {
          //Do the request to hearthstone API.
-         const response = await axios.request(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/sets/${deckName}`, options);
-         const data = response.data;
-         var cards = []
+         const response = await axios.request(`https://hearthstone-card-checker-back-ba8f1169b98d.herokuapp.com/searchByDeck/${deckName}`, {
+            params: {
+               locale: language.id
+            },
+         });
 
-         //Extract all images found.
-         for(let i=0; i<data.length; i++){
-            if(data[i].hasOwnProperty('img')){
-               cards.push(data[i]);
-            }
-         }
-
-         setCardInformation(cards);
+         const { cards } = response.data;
+         
+         if(cards)
+            setCardInformation(cards);
       }
       catch(error){
          alert(error);
@@ -63,7 +61,7 @@ export default function SearchByDeck(props) {
             placeholder={ language.SBDPlaceholder }
             searchPlaceholder={ language.SBDSearchPlaceholder }
             fontFamily='IBMPlexMono'
-            setSelected={ (deckName) => requestAPI(deckName) } 
+            setSelected={ (deckName) => requestDeck(deckName) } 
             data={ decksEn } 
             save="value"
          />

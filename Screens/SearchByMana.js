@@ -28,33 +28,22 @@ export default function SearchByMana(props) {
   ];
 
    //Function to handle with api request. Currently works only with cards between mana cost 1-10. I know there is cards higher.
-   const handleSearch = async (item) => {
+   const requestMana = async (item) => {
       setDisabled(true);
       setLoading(true);
-
-      opt.params.cost = item.id;
     
       try {
          //Do the request to hearthstone API.
-         const response = await axios.request('https://omgvamp-hearthstone-v1.p.rapidapi.com/cards', opt);
-         const data = response.data;
+         const response = await axios.request(`https://hearthstone-card-checker-back-ba8f1169b98d.herokuapp.com/searchByMana/${item.id}`, {
+            params: {
+               locale: language.id,
+            },
+         });
 
-         var cards = [];
+         const { cards } = response.data;
 
-         //Get each deck in data.
-         for (let deck in data) {
-            //Extract deck information
-            var array = data[deck];
-         
-            //Extract images from deck cards.
-            for(let i=0; i<array.length; i++){
-               if(array[i].hasOwnProperty("img")){
-               cards.push(array[i]);
-               }
-            }
-         }
-
-         setCards(cards);
+         if(cards)
+            setCards(cards);
 
       } catch (error) {
          alert(error);
@@ -89,7 +78,7 @@ export default function SearchByMana(props) {
             disabled={ disabled }
             onPress={ () => {
                setSelected(item.id);
-               handleSearch(item);
+               requestMana(item);
             }}>
             <Image
                source={ image }

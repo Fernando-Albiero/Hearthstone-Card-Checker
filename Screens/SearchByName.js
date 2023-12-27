@@ -1,7 +1,6 @@
 import { ActivityIndicator, Image, Keyboard, KeyboardAvoidingView, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from 'react-native';
 import { AntDesign } from '@expo/vector-icons'; 
 import { useState } from 'react';
-import { options } from '../configuration';
 import axios from 'axios';
 import CustomModal from '../Components/CustomModal';
 import styles from '../Styles/SearchByNameStyle';
@@ -17,46 +16,36 @@ export default function SearchByName(props) {
    const [modalText, setModalText] = useState('');
    const [opacity, setOpacity] = useState(1);
    
-   //Function to handle with searches.
-   const requestAPI = async () => {
-      //Start loading.
-      Keyboard.dismiss();
+   //Function to request card to backend.
+   const requestCard = async () => {
       setLoading(true);
       setCardImage(require('../assets/cardback.png'));
       setRequest(false);
 
-      //Verify card name.
       if (cardName != '') {
          try {
-            //Do the request to hearthstone API.
-            const response = await axios.request(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/${cardName}`, options);
-            const data = response.data;
+            const response = await axios.get(`https://hearthstone-card-checker-back-ba8f1169b98d.herokuapp.com/searchByName/${cardName}`, {
+               params: {
+                  locale: language.id
+               },
+            });
+            const { cardImage } = response.data;
 
-            if(data.length > 0){
-               //Extract card image and information.
-               for(let i=0; i<data.length; i++){
-                  if(data[i].hasOwnProperty('img')){
-                     setCardImage({ uri: data[i].img});
-                     setRequest(true);
-                     break;
-                  }
-               }
-            }
-            else{
+            if (cardImage) {
+               setCardImage(cardImage);
+               setRequest(true);
+            } else {
                handleModal(language.SBNModalTitle2, language.SBNModalText2);
             }
-         }
-         catch(error){
-               handleModal(language.SBNModalTitle2, language.SBNModalText2);
-         }
-      } 
-      else{
+         } catch (error) {
+            handleModal(language.SBNModalTitle2, language.SBNModalText2);
+         }  
+      } else {
          handleModal(language.SBNModalTitle2, language.SBNModalText3);
       }
 
-      //Stop loading.
       setLoading(false);
-   }
+   };
 
    //Function to handle with click on card.
    const handleCardPress = () => {
@@ -123,7 +112,7 @@ export default function SearchByName(props) {
             </View>
             <TouchableHighlight 
                style={ styles.button } 
-               onPress={ requestAPI }>
+               onPress={ requestCard }>
                <Text style={ styles.buttonText }>{language.SBNButtonSearch}</Text>
             </TouchableHighlight>
          </KeyboardAvoidingView>

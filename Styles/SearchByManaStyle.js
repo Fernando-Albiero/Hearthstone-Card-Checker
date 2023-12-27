@@ -44,6 +44,9 @@ const styles = StyleSheet.create({
       fontSize: moderateScale(18),
       fontFamily: 'IBMPlexMono',
       marginBottom: verticalScale(10),
+      marginTop: verticalScale(20),
+      marginLeft: horizontalScale(30),
+      marginRight: horizontalScale(20)
    },
    loadingSubMessage:{
       textAlign: 'center', 
