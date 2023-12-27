@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
    },
    loadingMessage:{
-      fontSize: moderateScale(18),
+      fontSize: moderateScale(14),
       fontFamily: 'IBMPlexMono',
       marginBottom: verticalScale(10),
       marginTop: verticalScale(20),
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
    },
    loadingSubMessage:{
       textAlign: 'center', 
-      fontSize: moderateScale(25),
+      fontSize: moderateScale(22),
       fontFamily: 'IBMPlexMono-Bold',
       marginTop: verticalScale(40),
       marginBottom: verticalScale(40)

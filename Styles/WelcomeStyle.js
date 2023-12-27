@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
       height: '7%', 
       flexDirection: 'row', 
       justifyContent: 'flex-end', 
-      alignItems: 'flex-end'
+      alignItems: 'center'
    },
    flagBr:{
       width: horizontalScale(50), 
@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
       width: horizontalScale(50), 
       height: verticalScale(50), 
       resizeMode: 'contain', 
-      marginRight: horizontalScale(25), 
-      marginLeft: horizontalScale(15)
+      marginLeft: horizontalScale(15),
+      marginRight: horizontalScale(15)
    },
    textView:{
       height: '93%', 

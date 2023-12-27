@@ -3,8 +3,8 @@ const en = {
    /*############################# WELCOME TEXTS ##############################*/
    welcome: 'Welcome to',
    welcomeTittle: `Hearth Stone\nCard Checker`,
-   welcomeText1: `This app was made to allow\n search for Blizzard's Hearthstone game cards\ninformation based on several\ndata like card name, deck name\n or star power.\n`,
-   welcomeText2: `This app uses the HearthStone\nAPI available on:\n`,
+   welcomeText1: `This app was made to allow search for Blizzard's Hearthstone game cards information based on several data like card name, deck name or star power.\n`,
+   welcomeText2: `This app uses the HearthStoneAPI available on:\n`,
    welcomeLink: 'https://hearthstoneapi.com/',
    welcomeButton: 'Start',
    welcomeCredits: `Developed and designed\nby Fernando Albiero`,
@@ -39,15 +39,15 @@ const en = {
  const ptBR = {
    id: 'ptBR',
    /*############################# WELCOME TEXTS ##############################*/
-   welcome: 'Bem-vindo ao',
+   welcome: 'Bem-vindo(a) ao',
    welcomeTittle: `Hearth Stone\nCard Checker`,
-   welcomeText1: `Este aplicativo foi feito\n para permitir a busca de cartas do jogo HearthStone, da Blizzard,\nbaseado em várias informações\ncomo nome da carta, do baralho\n ou custo de mana.\n`,
+   welcomeText1: `Este aplicativo foi feito para permitir a busca de cartas do jogo HearthStone, da Blizzard, baseado em várias informações, como nome da carta, do baralho ou custo de mana.\n`,
    welcomeText2: `Este aplicativo usa a HearthStone API disponível em:\n`,
    welcomeLink: 'https://hearthstoneapi.com/',
    welcomeButton: 'Iniciar',
    welcomeCredits: `Desenvolvido e projetado\npor Fernando Albiero`,
    /*######################### SEARCH BY NAME TEXTS #########################*/
-   SBNInputText: 'Digite o nome da carta...',
+   SBNInputText: 'Digite o nome da carta',
    SBNMModalTitle1: 'Não conhece nenhuma carta?',
    SBNModalTitle2: 'Ops!',
    SBNModalText1: `Tente algum desses nomes:\n- Arquimago Antônidas\n- Cara de Jaula\n- DJ Manavento\n- Golpe Gélido\n- O Carcereiro\n- Ysera\n`,
