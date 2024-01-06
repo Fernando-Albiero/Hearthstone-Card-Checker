@@ -54,6 +54,9 @@ export default function SearchByName(props) {
       if(request){
          navigation.navigate('CardInformation', {cardName: cardName, language: language});
       }
+      else{
+         handleModal(language.SBNMModalTitle1, language.SBNModalText1);
+      }
    }
 
    //Function to handle modal.
