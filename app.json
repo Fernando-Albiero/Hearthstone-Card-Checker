@@ -15,7 +15,11 @@
     },
     "android": {
       "softwareKeyboardLayoutMode": "pan",
-      "package": "com.HearthstoneCardChecker"
+      "package": "com.HearthstoneCardChecker",
+      "adaptativeIcon": {
+         "foregroundImage": "./assets/adaptative-icon.png",
+         "backgroundColor": "#ffffff"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
