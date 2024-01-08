@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { View, Text, KeyboardAvoidingView } from 'react-native';
 import Swiper from 'react-native-swiper';
 import SearchByName from '../Screens/SearchByName';
 import SearchByDeck from '../Screens/SearchByDeck';
@@ -9,6 +9,13 @@ export default function SwiperComponent({navigation, route}) {
    const {language} = route.params;
    
    return (
+      <KeyboardAvoidingView
+         style={{flex:1}}
+         contentContainerStyle={{flexGrow: 1}}
+         behavior="position"
+         enabled
+         keyboardVerticalOffset={Platform.select({ ios: 0, android: -90 })}
+      >
       <Swiper
          activeDotStyle={ styles.dots }
          activeDotColor='black'
@@ -30,5 +37,6 @@ export default function SwiperComponent({navigation, route}) {
             <SearchByMana navigation={navigation} language={language}/>
          </View>
       </Swiper>
+      </KeyboardAvoidingView>
    );
  }

@@ -1,4 +1,4 @@
-import { ActivityIndicator, Image, Keyboard, KeyboardAvoidingView, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Image, Keyboard, Text, TextInput, TouchableHighlight, TouchableOpacity, View } from 'react-native';
 import { AntDesign } from '@expo/vector-icons'; 
 import { useState } from 'react';
 import axios from 'axios';
@@ -24,7 +24,7 @@ export default function SearchByName(props) {
 
       if (cardName != '') {
          try {
-            const response = await axios.get(`https://hearthstone-card-checker-back-ba8f1169b98d.herokuapp.com/searchByName/${cardName}`, {
+            const response = await axios.get(`https://hearthstone-card-checker-backend.onrender.com/searchByName/${cardName}`, {
                params: {
                   locale: language.id
                },
@@ -98,7 +98,7 @@ export default function SearchByName(props) {
                </View>
             )
          }
-         <KeyboardAvoidingView 
+         <View 
             style={ styles.bottomContainer }
             behavior={'height'}>
             <View style={ styles.inputRow }>
@@ -118,7 +118,7 @@ export default function SearchByName(props) {
                onPress={ requestCard }>
                <Text style={ styles.buttonText }>{language.SBNButtonSearch}</Text>
             </TouchableHighlight>
-         </KeyboardAvoidingView>
+         </View>
          {
             showModal ? (
                <CustomModal 

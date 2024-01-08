@@ -17,7 +17,7 @@ export default function SearchByDeck(props) {
 
       try {
          //Do the request to hearthstone API.
-         const response = await axios.request(`https://hearthstone-card-checker-back-ba8f1169b98d.herokuapp.com/searchByDeck/${deckName}`, {
+         const response = await axios.request(`https://hearthstone-card-checker-backend.onrender.com/searchByDeck/${deckName}`, {
             params: {
                locale: language.id
             },
@@ -59,11 +59,11 @@ export default function SearchByDeck(props) {
             boxStyles={ styles.selectList }
             dropdownStyles={ styles.dropdownMenu }
             placeholder={ language.SBDPlaceholder }
-            searchPlaceholder={ language.SBDSearchPlaceholder }
             fontFamily='IBMPlexMono'
             setSelected={ (deckName) => requestDeck(deckName) } 
             data={ decksEn } 
             save="value"
+            search={false}
          />
          {
             loading ? 

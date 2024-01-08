@@ -18,7 +18,7 @@ export default function CardInformation({route, navigation}) {
 
       try {
          //Do the request.
-         const response = await axios.request(`https://hearthstone-card-checker-back-ba8f1169b98d.herokuapp.com/cardInformation/${cardName}`, {
+         const response = await axios.request(`https://hearthstone-card-checker-backend.onrender.com/cardInformation/${cardName}`, {
             params: {
                locale: language.id
             },

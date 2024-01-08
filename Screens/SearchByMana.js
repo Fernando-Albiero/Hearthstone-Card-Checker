@@ -34,7 +34,7 @@ export default function SearchByMana(props) {
     
       try {
          //Do the request to hearthstone API.
-         const response = await axios.request(`https://hearthstone-card-checker-back-ba8f1169b98d.herokuapp.com/searchByMana/${item.id}`, {
+         const response = await axios.request(`https://hearthstone-card-checker-backend.onrender.com/searchByMana/${item.id}`, {
             params: {
                locale: language.id,
             },
