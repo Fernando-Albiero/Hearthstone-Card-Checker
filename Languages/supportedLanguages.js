@@ -54,6 +54,9 @@ const en = {
    SBNModalText2: `Carta não encontrada!\n\nVocê digitou o nome da carta corretamente?\n`,
    SBNModalText3: `Por favor, digite o nome da carta!\n`,
    SBNButtonSearch: 'Buscar',
+   SBNBack: 'Clique na carta para',
+   SBNBackBold: ' mais ',
+   SBNBackInformation: 'informações!',
    /*######################### SEARCH BY DECK TEXTS #########################*/
    SBDTitle: 'Buscar por Baralho',
    SBDPlaceholder: 'Selecione o Baralho',

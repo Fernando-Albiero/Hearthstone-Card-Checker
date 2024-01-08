@@ -92,7 +92,7 @@ export default function SearchByName(props) {
                   </TouchableOpacity>
                   {
                      request ? (
-                        <Text style={ styles.information }>{language.SBNBack}<Text style={{ fontWeight: 'bold'}}>{language.SBNBackBold}</Text>{language.SBNBackInformation}</Text>
+                        <Text style={ styles.information }>{language.SBNBack}<Text style={{ fontWeight: 'bold'}}>{language.SBNBackBold}{language.SBNBackInformation}</Text></Text>
                      ) : <></>
                   }   
                </View>
