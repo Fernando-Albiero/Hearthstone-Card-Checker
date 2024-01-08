@@ -1,4 +1,4 @@
-import { TouchableHighlight, View, Text, Image, Linking, StatusBar, TouchableOpacity, BackHandler } from "react-native";
+import { TouchableHighlight, View, Text, Image, Linking, StatusBar, TouchableOpacity } from "react-native";
 import { useEffect, useState } from "react";
 import { en, ptBR } from "../Languages/supportedLanguages";
 import { options } from "../configuration";
@@ -9,6 +9,7 @@ export default function Welcome({navigation}) {
    const [opacityBr, setOpacityBr] = useState(1);
    const [opacityEn, setOpacityEn] = useState(0.2);
 
+   //Prevent user to back to splash screen.
    useEffect(() =>{
       const backAction = () => {
          return true;
