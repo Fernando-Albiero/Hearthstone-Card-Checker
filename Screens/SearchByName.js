@@ -7,6 +7,7 @@ import styles from '../Styles/SearchByNameStyle';
 
 export default function SearchByName(props) {
    const { navigation, language } = props;
+   const [name, setName] = useState('');
    const [cardName, setCardName] = useState('');
    const [cardImage, setCardImage] = useState(require('../assets/cardback.png'));
    const [loading, setLoading] = useState(false);
@@ -17,14 +18,16 @@ export default function SearchByName(props) {
    const [opacity, setOpacity] = useState(1);
    
    //Function to request card to backend.
-   const requestCard = async () => {
+   const requestCard = async (name) => {
       setLoading(true);
       setCardImage(require('../assets/cardback.png'));
       setRequest(false);
 
-      if (cardName != '') {
+      if (name != '') {
+         setCardName(name);
+
          try {
-            const response = await axios.get(`https://hearthstone-card-checker-backend.onrender.com/searchByName/${cardName}`, {
+            const response = await axios.get(`https://hearthstone-card-checker-backend.onrender.com/searchByName/${name}`, {
                params: {
                   locale: language.id
                },
@@ -50,7 +53,6 @@ export default function SearchByName(props) {
    //Function to handle with click on card.
    const handleCardPress = () => {
       Keyboard.dismiss();
-
       if(request){
          navigation.navigate('CardInformation', {cardName: cardName, language: language});
       }
@@ -104,7 +106,7 @@ export default function SearchByName(props) {
             <View style={ styles.inputRow }>
                <TextInput
                   style={ styles.input }
-                  onChangeText={ (name) => setCardName(name.toLowerCase()) }
+                  onChangeText={ (name) => setName(name.toLowerCase()) }
                   placeholder={language.SBNInputText}
                />
                <TouchableHighlight 
@@ -115,7 +117,7 @@ export default function SearchByName(props) {
             </View>
             <TouchableHighlight 
                style={ styles.button } 
-               onPress={ requestCard }>
+               onPress={ () => requestCard(name) }>
                <Text style={ styles.buttonText }>{language.SBNButtonSearch}</Text>
             </TouchableHighlight>
          </View>
